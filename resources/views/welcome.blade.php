@@ -2,10 +2,10 @@
 
 @section('content')
 </style>
-<div class="container jumbotron justify-content-center">
+<div class="container justify-content-center">
     <div class="row">
 
-            <div class="col-2 my-2">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                 <div class="card">
                     <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -15,7 +15,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-2 my-2">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                 <div class="card">
                     <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -25,7 +25,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-2 my-2">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                 <div class="card">
                     <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -35,7 +35,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-2 my-2">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                 <div class="card">
                     <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -45,7 +45,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-2 my-2">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                 <div class="card">
                     <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -55,7 +55,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-2 my-2">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                 <div class="card">
                     <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -65,7 +65,7 @@
                     </div>
                   </div>
             </div>
-            <div class="col-2 my-2">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                 <div class="card">
                     <img src="https://edit.org/images/cat/book-covers-big-2019101610.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
