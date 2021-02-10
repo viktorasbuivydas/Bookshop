@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use App\Genre;
-class GenreController extends Controller
+use App\Author;
+class AuthorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = Genre::all();
-        return view('genre.index', compact('genres'));
+        $authors = Author::all();
+        return view('author.index', compact('authors'));
     }
 
     /**
@@ -25,7 +25,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('genre.create');
+        return view('author.create');
     }
 
     /**
@@ -37,11 +37,13 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'genre' => ['required', 'min:4', 'max:20', 'unique:genres,genre']
+            'author' => ['required', 'min:4', 'max:20', 'unique:authors,author']
         ]);
-        Genre::create(['genre' => $request->genre ]);
-        return redirect()->route('genre.create')->with('success', 'Genre created successfully');
+        Author::create(['author' => $request->author ]);
+        return redirect()->route('author.create')->with('success', 'Author created successfully');
     }
+
+   
 
     /**
      * Show the form for editing the specified resource.
@@ -51,8 +53,8 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        $genre = Genre::findOrFail($id);
-        return view('genre.edit', compact('genre'));
+        $author = Author::findOrFail($id);
+        return view('author.edit', compact('author'));
     }
 
     /**
@@ -64,13 +66,13 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $genre = Genre::findOrFail($id);
+        $author = Author::findOrFail($id);
         $request->validate([
-            'genre' => ['required', 'min:4', 'max:20', 'unique:genres,genre']
+            'author' => ['required', 'min:4', 'max:20', 'unique:authors,author']
         ]);
-        $genre->genre = $request->genre;
-        $genre->save();
-        return redirect()->route('genre.create')->with('success', 'Genre updated successfully');
+        $author->author = $request->author;
+        $author->save();
+        return redirect()->route('author.create')->with('success', 'Author updated successfully');
     }
 
     /**
@@ -81,8 +83,8 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        $genre = Genre::findOrFail($id);
-        $genre->delete();
-        return redirect()->route('genres')->with('success', 'Genre was deleted succesfully');
+        $author = Author::findOrFail($id);
+        $author->delete();
+        return redirect()->route('authors')->with('success', 'Author was deleted succesfully');
     }
 }

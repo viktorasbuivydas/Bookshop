@@ -4,7 +4,7 @@
 </style>
 <div class="container justify-content-center">
     <div class="row">
-            @foreach($books as $book)
+            @forelse($books as $book)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                     <div class="card">
                         <img src="/storage/uploads/images/{{ $book->cover_image_url }}" class="card-img-top" alt="...">
@@ -15,7 +15,9 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
+            @empty
+            <div class="col-lg-12 text-center my-5 py-3 alert alert-danger center-block">No data found </div> 
+            @endforelse
             
             
            

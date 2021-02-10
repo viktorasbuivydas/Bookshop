@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Genre;
-class GenreController extends Controller
+
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class GenreController extends Controller
      */
     public function index()
     {
-        $genres = Genre::all();
-        return view('genre.index', compact('genres'));
+        return view('review.index');
     }
 
     /**
@@ -25,7 +23,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('genre.create');
+        return view('review.create');
     }
 
     /**
@@ -36,11 +34,18 @@ class GenreController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'genre' => ['required', 'min:4', 'max:20', 'unique:genres,genre']
-        ]);
-        Genre::create(['genre' => $request->genre ]);
-        return redirect()->route('genre.create')->with('success', 'Genre created successfully');
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -51,8 +56,7 @@ class GenreController extends Controller
      */
     public function edit($id)
     {
-        $genre = Genre::findOrFail($id);
-        return view('genre.edit', compact('genre'));
+        //
     }
 
     /**
@@ -64,13 +68,7 @@ class GenreController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $genre = Genre::findOrFail($id);
-        $request->validate([
-            'genre' => ['required', 'min:4', 'max:20', 'unique:genres,genre']
-        ]);
-        $genre->genre = $request->genre;
-        $genre->save();
-        return redirect()->route('genre.create')->with('success', 'Genre updated successfully');
+        //
     }
 
     /**
@@ -81,8 +79,6 @@ class GenreController extends Controller
      */
     public function destroy($id)
     {
-        $genre = Genre::findOrFail($id);
-        $genre->delete();
-        return redirect()->route('genres')->with('success', 'Genre was deleted succesfully');
+        //
     }
 }
