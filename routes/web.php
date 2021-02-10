@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\CheckRole;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +18,7 @@ Route::get('/', 'IndexController@index')->name('index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//books
+//books 
 Route::get('/books', 'BookController@index')->name('mybooks');
 Route::get('/book/create', 'BookController@create')->name('book.create');
 Route::get('/book/edit/{id}', 'BookController@edit')->name('book.edit');
@@ -26,12 +26,14 @@ Route::post('/book/create', 'BookController@store')->name('book.store');
 Route::put('/book/edit/{id}', 'BookController@update')->name('book.update');
 
 
-Route::get('/genres', 'GenreController@index')->name('genres');
-Route::get('/genre/create', 'GenreController@create')->name('genre.create');
-Route::get('/genre/edit/{id}', 'GenreController@edit')->name('genre.edit');
-Route::post('/genre/create', 'GenreController@store')->name('genre.store');
-Route::put('/genre/edit/{id}', 'GenreController@update')->name('genre.update');
-Route::delete('/genre/delete/{id}', 'GenreController@destroy')->name('genre.destroy');
+Route::group(['middleware' => 'checkRole:admin'], function(){
+    Route::get('/genres', 'GenreController@index')->name('genres');
+    Route::get('/genre/create', 'GenreController@create')->name('genre.create');
+    Route::get('/genre/edit/{id}', 'GenreController@edit')->name('genre.edit');
+    Route::post('/genre/create', 'GenreController@store')->name('genre.store');
+    Route::put('/genre/edit/{id}', 'GenreController@update')->name('genre.update');
+    Route::delete('/genre/delete/{id}', 'GenreController@destroy')->name('genre.destroy');
+});
 
 Route::get('/authors', 'AuthorController@index')->name('authors');
 Route::get('/author/create', 'AuthorController@create')->name('author.create');
