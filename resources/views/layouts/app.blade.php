@@ -28,6 +28,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        @if(Request::path() !== '/')
+                            <li class="nav-item">
+                                <a id="navbarDropdown" class="nav-link" href="/">
+                                    Home
+                                </a>
+                            </li>
+                        @endif
                         <li>
                             <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Search...">
                         </li>
@@ -38,10 +45,10 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto align-items-center">
-
+                        
                         @auth
                         <li>
-                            <button type="submit" class="btn btn-primary mx-1">Add Book to Listing</button>
+                            <a href="{{route('book.create')}}" class="btn btn-primary mx-1">Add Book to Listing</a>
                         </li>
 
                         @endauth
@@ -60,8 +67,11 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                        Menu
+                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
