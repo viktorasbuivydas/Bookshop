@@ -17,13 +17,15 @@
                         <ul>
                             <li><a href="{{route('mybooks')}}">My Books</a></li>
                         </ul>
-                            <p>Admin</p>
-                        <ul>
-                            <li><a href="{{route('genres')}}">Genres</a></li>
-                            <li><a href="{{route('authors')}}">Authors</a></li>
-                            <li><a href="{{route('reviews')}}">Reviews</a></li>
-                            <li><a href="{{route('reports')}}">Reports</a></li>
-                        </ul>
+                        @admin
+                                <p>Admin</p>
+                            <ul>
+                                <li><a href="{{route('genres')}}">Genres</a></li>
+                                <li><a href="{{route('authors')}}">Authors</a></li>
+                                <li><a href="{{route('reviews')}}">Reviews</a></li>
+                                <li><a href="{{route('reports')}}">Reports</a></li>
+                            </ul>
+                        @endadmin
                     </div>
                 </div>
             </div>
