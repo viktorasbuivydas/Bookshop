@@ -6,7 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 
-                <div class="card-header d-flex justify-content-between align-items-center">Genres <a href="{{route('genre.create')}}" class="btn btn-primary">Create</a></div>
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <a href="{{route('home')}}" class="btn btn-primary">Back</a>
+                    Genres
+                    <a href="{{route('genre.create')}}" class="btn btn-primary">Create</a>
+                </div>
                 @if(session('success'))
                     <div class="alert alert-success m-2">
                         {{ session('success') }}

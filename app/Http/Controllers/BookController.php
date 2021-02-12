@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\BookRequest;
 use Illuminate\Support\Facades\Auth;
-use App\Book;
-use App\Services\ImageService;
 use Illuminate\Support\Str;
+
+use App\Services\TrimService;
+use App\Book;
+use App\Author;
+use App\Genre;
+
+use App\Services\ImageService;
+
 class BookController extends Controller
 {
     public function __construct(){
@@ -19,37 +25,44 @@ class BookController extends Controller
 
     public function create()
     {
-        return view('book.create');
+        $authors = Author::all();
+        $genres = Genre::all();
+        return view('book.create', compact('authors', 'genres'));
     }
 
    
-    public function store(Request $request)
+    public function store(BookRequest $request)
     {
-        $image_name = "";
-        $imageService = new ImageService();
         if($request->hasFile('cover_image_url')){
             if($request->file('cover_image_url')->isValid()){
-                $request->validate([
-                    'title' => ['required', 'max:100'],
-                    'description' => ['required', 'max:200'],
-                    'conver_image_url' => ['file', 'image:mimes:jpeg, png, jpg', 'max:2048']
-                ]);
                 $image = $request->file('cover_image_url');
-                $request->cover_image_url = Str::random(25);
-                $folder = '\uploads\images\\';
-                $filePath = $folder . $request->cover_image_url. '.' . $image->getClientOriginalExtension();
-                $imageService->uploadOne($image, $folder, 'public', $request->cover_image_url);
-                $request->cover_image_url =  $request->cover_image_url . '.' .$image->getClientOriginalExtension();
+                $image_title = Str::random(25) .'.' .$image->getClientOriginalExtension();
+                (new ImageService())->uploadOne($image, 'public', $image_title);
+                $request->cover_image_url = $image_title;
             }
         }
-        $data = [
+        $trim = new TrimService();
+        $authors = $trim->getArrayFromStringInput($request->author);
+        $genres = $trim->getArrayFromStringInput($request->genre);
+
+        foreach($authors as $author){
+                if(!Author::where('author', $author)->exists())
+                Author::create(['author' => $author]);
+        }
+        foreach($genres as $genre){
+            if(!Genre::where('genre', $genre)->exists())
+            Genre::create(['genre' => $genre]);
+        }
+        if(Book::where('title', $request->title)->where('description', $request->description)->exists()){
+            return redirect()->route('book.create')->with('error', 'Book already exists');
+        }
+        Auth::user()->books()->create(
+            [
             'title' => $request->title,
             'cover_image_url' => $request->cover_image_url,
             'description' => $request->description,
-        ];
-        Auth::user()->books()->create(
-            $data
-        );
+        ]);
+        
         return redirect()->route('book.create')->with('success', 'Book created successfully');
     }
 

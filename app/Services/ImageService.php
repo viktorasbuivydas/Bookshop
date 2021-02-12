@@ -4,9 +4,10 @@ namespace App\Services;
 
 
 class ImageService{
-    public function uploadOne($uploadedFile, $folder = null, $disk = 'public', $name)
+    public function uploadOne($uploadedFile, $disk = 'public', $name)
     {
-        $file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
+        $folder = '\uploads\images\\';
+        $file = $uploadedFile->storeAs($folder, $name, $disk);
 
         return $file;
     }

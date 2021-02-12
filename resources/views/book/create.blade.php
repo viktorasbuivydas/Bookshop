@@ -12,6 +12,11 @@
                         {{ session('success') }}
                     </div>
                 @endif
+                @if(session('error'))
+                <div class="alert alert-danger m-2">
+                    {{ session('error') }}
+                </div>
+            @endif
                 <div class="card-body">
                    <form method="POST" action="{{ route('book.store') }}" enctype="multipart/form-data">
                        @csrf
@@ -42,6 +47,60 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Authors</label>
+                        </div>
+                        @foreach($authors as $author)
+                            <div class="form-group row">
+                                <div class="col-md-4 text-md-right">
+                                    <input class="form-check-input" name="all_authors[]" type="checkbox" value="{{ $author->id }}">
+                                </div>
+                                <label class="col-md-6 col-form-label text-md-left">{{ $author->author }}</label>
+                            </div>
+                        @endforeach
+                        <hr>
+                        <div class="form-group row">
+                            <label for="title" class="col-md-5 col-form-label text-md-right">Add new author seperate with coma</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('author') is-invalid @enderror" name="author" autocomplete="author" placeholder="author1,author2,author3">
+
+                                @error('author')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-right">Genres</label>
+                        </div>
+                        @foreach($genres as $genre)
+                            <div class="form-group row">
+                                <div class="col-md-4 text-md-right">
+                                    <input class="form-check-input" name="all_genres[]" type="checkbox" value="{{ $genre->id }}">
+                                </div>
+                                <label class="col-md-6 col-form-label text-md-left">{{ $genre->genre }}</label>
+                            </div>
+                        @endforeach
+                        <hr>
+                        <div class="form-group row">
+                            <label for="genre" class="col-md-5 col-form-label text-md-right">Add new genre seperate with coma</label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('genre') is-invalid @enderror" name="genre" autocomplete="genre" placeholder="genre1,genre2,genre3">
+
+                                @error('genre')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <hr>
                         <div class="form-group row">
                             <label for="cover_image_url" class="col-md-4 col-form-label text-md-right">Book Cover</label>
 
