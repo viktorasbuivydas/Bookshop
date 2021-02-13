@@ -2,7 +2,7 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
-
+use App\Console\Commands\ClearStorage;
 /*
 |--------------------------------------------------------------------------
 | Console Routes
@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('clearStorage', function () {
+    $this->comment((new ClearStorage())->handle());
+})->describe('Clearing storage...');
