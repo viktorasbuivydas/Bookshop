@@ -6,14 +6,14 @@
         <div class="col-md-8">
             <div class="card">
                 
-                <div class="card-header d-flex justify-content-between align-items-center"><a href="{{route('genres')}}" class="btn btn-primary">Back</a> Edit Genre</div>
+                <div class="card-header d-flex justify-content-between align-items-center"><a href="{{route('admin.genres.index')}}" class="btn btn-primary">Back</a> Edit Genre</div>
                 @if(session('success'))
                     <div class="alert alert-success m-2">
                         {{ session('success') }}
                     </div>
                 @endif
                 <div class="card-body">
-                   <form method="POST" action="{{ route('genre.update', $genre->id) }}" >
+                   <form method="POST" action="{{ route('admin.genres.update', $genre->id) }}" >
                     @method('PUT')
                        @csrf
                         <div class="form-group row">

@@ -18,10 +18,10 @@
                 </div>
             @endif
                 <div class="card-body">
-                   <form method="POST" action="{{ route('book.store') }}" enctype="multipart/form-data">
+                   <form method="POST" action="{{ route('user.books.store') }}" enctype="multipart/form-data">
                        @csrf
                         <div class="form-group row">
-                            <label for="title" class="col-md-4 col-form-label text-md-right">Book Title</label>
+                            <label for="title" class="col-md-4 col-form-label text-md-right">Book Title * </label>
 
                             <div class="col-md-6">
                                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" required autocomplete="title">
@@ -35,7 +35,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="description" class="col-md-4 col-form-label text-md-right">Book Description</label>
+                            <label for="description" class="col-md-4 col-form-label text-md-right">Book Description * </label>
 
                             <div class="col-md-6">
                                 <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required autocomplete="description"></textarea>
@@ -51,14 +51,14 @@
                         <div class="form-group row">
                             <label class="col-md-4 col-form-label text-md-right">Authors</label>
                         </div>
-                        @foreach($authors as $author)
-                            <div class="form-group row">
-                                <div class="col-md-4 text-md-right">
-                                    <input class="form-check-input" name="all_authors[]" type="checkbox" value="{{ $author->id }}">
-                                </div>
-                                <label class="col-md-6 col-form-label text-md-left">{{ $author->author }}</label>
-                            </div>
-                        @endforeach
+                        <div class="form-group row">
+                            <select class="form-control" name="all_authors[]" size="5" multiple aria-label="multiple select example">
+                                <option selected>Select multiple authors by holding ctrl</option>
+                                @foreach($authors as $author)
+                                            <option value="{{$author->id}}">{{$author->author}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <hr>
                         <div class="form-group row">
                             <label for="title" class="col-md-5 col-form-label text-md-right">Add new author seperate with coma</label>
@@ -76,16 +76,16 @@
                         <hr>
 
                         <div class="form-group row">
-                            <label class="col-md-4 col-form-label text-md-right">Genres</label>
+                            <label class="col-md-6 col-form-label text-md-right">Genres</label>
                         </div>
-                        @foreach($genres as $genre)
-                            <div class="form-group row">
-                                <div class="col-md-4 text-md-right">
-                                    <input class="form-check-input" name="all_genres[]" type="checkbox" value="{{ $genre->id }}">
-                                </div>
-                                <label class="col-md-6 col-form-label text-md-left">{{ $genre->genre }}</label>
-                            </div>
-                        @endforeach
+                        <div class="form-group row">
+                            <select class="form-control" name="all_genres[]" size="5" multiple aria-label="multiple select example">
+                                <option selected>Select multiple genres by holding ctrl</option>
+                                @foreach($genres as $genre)
+                                            <option value="{{$genre->id}}">{{$genre->genre}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <hr>
                         <div class="form-group row">
                             <label for="genre" class="col-md-5 col-form-label text-md-right">Add new genre seperate with coma</label>
@@ -102,7 +102,33 @@
                         </div>
                         <hr>
                         <div class="form-group row">
-                            <label for="cover_image_url" class="col-md-4 col-form-label text-md-right">Book Cover</label>
+                            <label for="price" class="col-md-4 col-form-label text-md-right">Price, $ </label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="price">
+
+                                @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="discount" class="col-md-4 col-form-label text-md-right">Discount, % </label>
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control @error('discount') is-invalid @enderror" name="discount" required autocomplete="discount" value="0">
+
+                                @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="cover_image_url" class="col-md-4 col-form-label text-md-right">Book Cover * </label>
 
                             <div class="col-md-6">
                                 <input id="cover_image_url" type="file" class="form-control @error('cover_image_url') is-invalid @enderror" name="cover_image_url" required autocomplete="cover_image_url">

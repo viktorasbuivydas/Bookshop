@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use App\Author;
-class AuthorController extends Controller
+
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors = Author::all();
-        return view('author.index', compact('authors'));
+        return view('review.index');
     }
 
     /**
@@ -25,7 +24,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        return view('author.create');
+        return view('review.create');
     }
 
     /**
@@ -36,14 +35,19 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'author' => ['required', 'min:4', 'max:20', 'unique:authors,author']
-        ]);
-        Author::create(['author' => $request->author ]);
-        return redirect()->route('author.create')->with('success', 'Author created successfully');
+        //
     }
 
-   
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -53,8 +57,7 @@ class AuthorController extends Controller
      */
     public function edit($id)
     {
-        $author = Author::findOrFail($id);
-        return view('author.edit', compact('author'));
+        //
     }
 
     /**
@@ -66,13 +69,7 @@ class AuthorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $author = Author::findOrFail($id);
-        $request->validate([
-            'author' => ['required', 'min:4', 'max:20', 'unique:authors,author']
-        ]);
-        $author->author = $request->author;
-        $author->save();
-        return redirect()->route('author.create')->with('success', 'Author updated successfully');
+        //
     }
 
     /**
@@ -83,8 +80,6 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        $author = Author::findOrFail($id);
-        $author->delete();
-        return redirect()->route('authors')->with('success', 'Author was deleted succesfully');
+        //
     }
 }

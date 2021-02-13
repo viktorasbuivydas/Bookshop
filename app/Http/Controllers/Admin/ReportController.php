@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ReviewController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return view('review.index');
+        return view('report.index');
     }
 
     /**
@@ -22,8 +22,8 @@ class ReviewController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('review.create');
+    {        
+        return view('report.create');
     }
 
     /**

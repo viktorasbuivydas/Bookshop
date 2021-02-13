@@ -7,9 +7,9 @@
             <div class="card">
                 
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <a href="{{route('home')}}" class="btn btn-primary">Back</a>
-                    Genres
-                    <a href="{{route('genre.create')}}" class="btn btn-primary">Create</a>
+                    <a href="{{route('home')}}" class="btn btn-primary">Back</a> 
+                    Authors 
+                    <a href="{{route('admin.authors.create')}}" class="btn btn-primary">Create</a>
                 </div>
                 @if(session('success'))
                     <div class="alert alert-success m-2">
@@ -17,22 +17,22 @@
                     </div>
                 @endif
                 <div class="card-body">
-                        @if(count($genres)>0)
+                        @if(count($authors)>0)
                         <table class="table">
                             <thead>
                             <tr>
-                                <th scope="col">Genre</th>
+                                <th scope="col">Author</th>
                                 <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
                         @endif
-                        @forelse($genres as $genre)
+                        @forelse($authors as $author)
                             <tr>
-                                <th>{{ $genre->genre }}</th>
+                                <th>{{ $author->author }}</th>
                                 <td class="d-flex">
-                                    <a href="{{ route('genre.edit', $genre->id) }}" class="btn btn-warning mx-2">Edit</a>
-                                    <form action=" {{ route('genre.destroy', $genre->id) }}" method="POST">
+                                    <a href="{{ route('admin.authors.edit', $author->id) }}" class="btn btn-warning mx-2">Edit</a>
+                                    <form action=" {{ route('admin.authors.destroy', $author->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger mx-2">Delete</button>
@@ -47,7 +47,7 @@
                         @endforelse
                     </tbody>
                     </table>
-
+                    {{ $authors->links() }}
                 </div>
             </div>
         </div>

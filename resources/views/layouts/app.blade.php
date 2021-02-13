@@ -48,7 +48,7 @@
                         
                         @auth
                         <li>
-                            <a href="{{route('book.create')}}" class="btn btn-primary mx-1">Add Book to Listing</a>
+                            <a href="{{route('user.books.create')}}" class="btn btn-primary mx-1">Add Book to Listing</a>
                         </li>
 
                         @endauth
