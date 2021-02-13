@@ -9,7 +9,7 @@ use App\User;
 class Book extends Model
 {
     protected $fillable = [
-        'title', 'description', 'cover_image_url'
+        'title', 'description', 'cover_image_url', 'price', 'discount'
     ];
     public function user(){
         return $this->belongsTo(User::class);

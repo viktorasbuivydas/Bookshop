@@ -55,6 +55,8 @@ class BookController extends Controller
             'title' => $request->title,
             'cover_image_url' => $request->cover_image_url,
             'description' => $request->description,
+            'price' => $request->price,
+            'discount' => $request->discount,
         ]);
         //add authors to book_authors
         foreach($book_authors as $book_author){

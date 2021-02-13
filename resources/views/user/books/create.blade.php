@@ -105,7 +105,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-right">Price, $ </label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="price">
+                                <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" name="price" required autocomplete="price">
 
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -118,9 +118,9 @@
                             <label for="discount" class="col-md-4 col-form-label text-md-right">Discount, % </label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control @error('discount') is-invalid @enderror" name="discount" required autocomplete="discount" value="0">
+                                <input type="number" step="0.01" class="form-control @error('discount') is-invalid @enderror" name="discount" required autocomplete="discount" value="0">
 
-                                @error('price')
+                                @error('discount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
