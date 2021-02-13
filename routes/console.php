@@ -21,3 +21,9 @@ Artisan::command('inspire', function () {
 Artisan::command('clearStorage', function () {
     $this->comment((new ClearStorage())->handle());
 })->describe('Clearing storage...');
+
+Artisan::command('project:init', function () {
+    Artisan::call('clearStorage');
+    Artisan::call('migrate:fresh');
+    Artisan::call('db:seed');
+})->describe('Running commands');
