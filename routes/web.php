@@ -18,8 +18,10 @@ Route::get('/', 'IndexController@index')->name('index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('books', 'BookController');
+Route::get('admin/books/approve', 'Admin\BookController@approve')->name('admin.books.approve');
 
-//books 
+//books
 Route::group(['prefix' => 'user', 'as'=>'user.', 'middleware' => 'auth'], function(){
     Route::resource('books', User\BookController::class);
 });

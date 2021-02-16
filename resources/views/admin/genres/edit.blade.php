@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                
-                <div class="card-header d-flex justify-content-between align-items-center"><a href="{{route('admin.genres.index')}}" class="btn btn-primary">Back</a> Edit Genre</div>
+
+                <div class="card-header dark d-flex justify-content-between align-items-center"><a href="{{route('admin.genres.index')}}" class="btn btn-primary">Back</a> Edit Genre</div>
                 @if(session('success'))
                     <div class="alert alert-success m-2">
                         {{ session('success') }}
@@ -35,7 +35,7 @@
                                     Update
                                 </button>
 
-                                
+
                             </div>
                         </div>
                    </form>

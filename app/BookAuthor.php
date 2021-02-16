@@ -11,10 +11,10 @@ class BookAuthor extends Model
 {
     protected $fillable = ['author_id', 'book_id'];
     public $timestamps = false;
-    public function authors(){
+    public function author(){
         return $this->belongsTo(Author::class);
     }
-    public function books(){
+    public function book(){
         return $this->belongsTo(Book::class);
     }
 }

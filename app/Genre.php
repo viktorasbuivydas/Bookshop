@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Genre;
+use App\Book;
 
 class Genre extends Model
 {
@@ -12,4 +12,5 @@ class Genre extends Model
         'genre'
     ];
     public $timestamps = false;
+
 }

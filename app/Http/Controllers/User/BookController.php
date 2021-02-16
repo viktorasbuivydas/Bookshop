@@ -33,7 +33,7 @@ class BookController extends Controller
         return view('user.books.create', compact('authors', 'genres'));
     }
 
-   
+
     public function store(BookRequest $request)
     {
         (new ImageService())->uploadImage($request, 'cover_image_url');
@@ -42,14 +42,18 @@ class BookController extends Controller
         $genres = $trim->getArrayFromStringInput($request->genre);
         $book_authors = (new AuthorService())->getAuthors($request->all_authors, $authors);
         $book_genres = (new GenreService())->getGenres($request->all_genres, $genres);
-        
-        if(Book::where([
+        $book = new Book();
+        if($book->where([
         'title' => $request->title,
         'description' => $request->description
         ])
         ->exists()){
             return redirect()->route('user.books.create')->with('error', 'Book already exists');
         }
+        if($book_authors == null && $authors == null)
+                return redirect()->route('user.books.create')->with('error', 'Please provide at least one book author');
+        if($book_genres == null && $genres == null)
+                return redirect()->route('user.books.create')->with('error', 'Please provide at least one book genre');
         $book_model = Auth::user()->books()->create(
             [
             'title' => $request->title,
@@ -58,20 +62,22 @@ class BookController extends Controller
             'price' => $request->price,
             'discount' => $request->discount,
         ]);
-        //add authors to book_authors
         foreach($book_authors as $book_author){
             BookAuthor::create(['author_id' => $book_author, 'book_id' => $book_model->id]);
         }
         foreach($book_genres as $book_genre){
             BookGenre::create(['genre_id' => $book_genre, 'book_id' => $book_model->id]);
         }
+
+        $book->authors()->sync($book_authors);
+        $book->genres()->sync($book_genres);
         return redirect()->route('user.books.create')->with('success', 'Book created successfully');
     }
 
-   
+
     public function show($id)
     {
-        //
+        //abort(404)
     }
 
     public function edit($id)
@@ -84,7 +90,7 @@ class BookController extends Controller
         //
     }
 
-   
+
     public function destroy($id)
     {
         //

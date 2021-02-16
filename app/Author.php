@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Author;
+
+use App\Book;
 
 class Author extends Model
 {
@@ -12,4 +13,5 @@ class Author extends Model
         'author'
     ];
     public $timestamps = false;
+
 }

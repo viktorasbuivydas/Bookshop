@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                
+
                 <div class="card-header">Add Book</div>
                 @if(session('success'))
                     <div class="alert alert-success m-2">
@@ -52,8 +52,9 @@
                             <label class="col-md-4 col-form-label text-md-right">Authors</label>
                         </div>
                         <div class="form-group row">
+                            <small>Select multiple authors by holding ctrl</small>
                             <select class="form-control" name="all_authors[]" size="5" multiple aria-label="multiple select example">
-                                <option selected>Select multiple authors by holding ctrl</option>
+
                                 @foreach($authors as $author)
                                             <option value="{{$author->id}}">{{$author->author}}</option>
                                 @endforeach
@@ -79,8 +80,9 @@
                             <label class="col-md-6 col-form-label text-md-right">Genres</label>
                         </div>
                         <div class="form-group row">
+                            <small>Select multiple genres by holding ctrl</small>
                             <select class="form-control" name="all_genres[]" size="5" multiple aria-label="multiple select example">
-                                <option selected>Select multiple genres by holding ctrl</option>
+
                                 @foreach($genres as $genre)
                                             <option value="{{$genre->id}}">{{$genre->genre}}</option>
                                 @endforeach
@@ -146,7 +148,7 @@
                                     Create
                                 </button>
 
-                                
+
                             </div>
                         </div>
                    </form>

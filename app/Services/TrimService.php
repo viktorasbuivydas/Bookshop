@@ -9,6 +9,7 @@ class TrimService{
         $full_array = explode(',', $string);
         $array = [];
         foreach($full_array as $element){
+            if(!empty($element))
             array_push($array, ltrim(rtrim($element)));
         }
         return $array;
