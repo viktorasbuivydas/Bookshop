@@ -40,8 +40,6 @@ class BookController extends Controller
         $trim = new TrimService();
         $authors = $trim->getArrayFromStringInput($request->author);
         $genres = $trim->getArrayFromStringInput($request->genre);
-        $book_authors = (new AuthorService())->getAuthors($request->all_authors, $authors);
-        $book_genres = (new GenreService())->getGenres($request->all_genres, $genres);
         $book = new Book();
         if($book->where([
         'title' => $request->title,
@@ -50,11 +48,11 @@ class BookController extends Controller
         ->exists()){
             return redirect()->route('user.books.create')->with('error', 'Book already exists');
         }
-        if($book_authors == null && $authors == null)
+        if($authors == null)
                 return redirect()->route('user.books.create')->with('error', 'Please provide at least one book author');
-        if($book_genres == null && $genres == null)
+        if($genres == null)
                 return redirect()->route('user.books.create')->with('error', 'Please provide at least one book genre');
-        $book_model = Auth::user()->books()->create(
+        Auth::user()->books()->create(
             [
             'title' => $request->title,
             'cover_image_url' => $request->cover_image_url,
@@ -62,15 +60,12 @@ class BookController extends Controller
             'price' => $request->price,
             'discount' => $request->discount,
         ]);
-        foreach($book_authors as $book_author){
-            BookAuthor::create(['author_id' => $book_author, 'book_id' => $book_model->id]);
-        }
-        foreach($book_genres as $book_genre){
-            BookGenre::create(['genre_id' => $book_genre, 'book_id' => $book_model->id]);
-        }
+        dd($authors);
+        $book->authors()->attach($authors);
+        $book->genres()->attach($genres);
 
-        $book->authors()->sync($book_authors);
-        $book->genres()->sync($book_genres);
+        //$book->authors()->sync($book_authors);
+        //$book->genres()->sync($book_genres);
         return redirect()->route('user.books.create')->with('success', 'Book created successfully');
     }
 

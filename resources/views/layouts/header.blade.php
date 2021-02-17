@@ -55,24 +55,25 @@
                 <!-- ============================================================== -->
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
+                @guest
+                    <a href="{{ route('login') }}" class="btn btn-primary mx-1"><i class="ti-user m-r-5 m-l-5"></i>
+                        Login</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary mx-1"><i class="ti-plus m-r-5 m-l-5"></i>
+                        Register</a>
+                @endguest
                 @auth
                     <li>
                         <a href="{{route('user.books.create')}}" class="btn btn-primary mx-1">Add Book to Listing</a>
                     </li>
 
                 @endauth
+                @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('assets/images/users/1.jpg') }}" alt="user" class="rounded-circle" width="31">
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
-                        @guest
-                        <a class="dropdown-item" href="{{ route('login') }}"><i class="ti-user m-r-5 m-l-5"></i>
-                            Login</a>
-                        <a class="dropdown-item" href="{{ route('register') }}"><i class="ti-plus m-r-5 m-l-5"></i>
-                            Register</a>
-                        @endguest
-                        @auth
+
                         <a class="dropdown-item" href="{{ route('home') }}"><i class="ti-home m-r-5 m-l-5"></i>
                             Dashboard</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-power-off m-r-5 m-l-5"></i>
@@ -80,9 +81,9 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                        @endauth
                     </ul>
                 </li>
+                @endauth
                 <!-- ============================================================== -->
                 <!-- User profile and search -->
                 <!-- ============================================================== -->
