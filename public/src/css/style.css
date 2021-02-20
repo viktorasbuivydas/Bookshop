@@ -25,4 +25,25 @@ body{
 .card{
     margin-top: 3rem;
 }
-
+.new{
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+}
+.discount{
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    padding: 0.5rem;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    background: rgba(22, 22, 22, 0.8);
+}
+.discount > p{
+    margin-bottom: 0;
+}
+.pagination{
+    justify-content: end;
+}

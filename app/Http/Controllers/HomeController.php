@@ -26,7 +26,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $books = Book::where('user_id', Auth::user()->id)->where('is_approved', true)->paginate(25);
-        return view('home', compact('books'));
+        $approved_book_count = Book::isApproved()->count();
+        $pending_book_count = Book::isPending()->count();
+        $rejected_book_count = Book::isRejected()->count();
+        return view('home', compact('approved_book_count', 'pending_book_count', 'rejected_book_count'));
     }
 }

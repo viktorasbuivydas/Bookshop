@@ -17,7 +17,6 @@
                     </nav>
                 </div>
             </div>
-
         </div>
     </div>
     <div class="container-fluid">
@@ -27,41 +26,26 @@
                             <div class="col-sm-4">
                                 <div class="card text-white text-center bg-success mb-4">
                                     <div class="card-body">
-                                        <h4 class="card-title">Approved books <b>10</b></h4>
+                                        <h4 class="card-title">Approved books <b>{{ $approved_book_count }}</b></h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="card text-white text-center bg-warning mb-4">
                                     <div class="card-body">
-                                        <h4 class="card-title">Pending books <b>10</b></h4>
+                                        <h4 class="card-title">Pending books <b>{{ $pending_book_count }}</b></h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
                                 <div class="card text-white text-center bg-danger mb-4">
                                     <div class="card-body">
-                                        <h4 class="card-title">Rejected books <b>10</b></h4>
+                                        <h4 class="card-title">Rejected books <b>{{ $rejected_book_count }}</b></h4>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="card mb-4">
-                            <div class="card-body text-muted">
-                                <h5 class="card-title">Search history</h5>
-                                <p class="card-text">
-                                    <ul>
-                                        <li>
-                                            test
-                                        </li>
-                                    </ul>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
