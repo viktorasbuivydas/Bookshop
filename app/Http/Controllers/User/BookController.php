@@ -36,10 +36,13 @@ class BookController extends Controller
 
     public function store(BookRequest $request)
     {
+
         (new ImageService())->uploadImage($request, 'cover_image_url');
         $trim = new TrimService();
         $authors = $trim->getArrayFromStringInput($request->author);
         $genres = $trim->getArrayFromStringInput($request->genre);
+        $author_id = (new AuthorService()) ->getAuthors($request->all_authors, $authors);
+        $genre_id = (new GenreService()) ->getGenres($request->all_genres, $genres);
         $book = new Book();
         if($book->where([
         'title' => $request->title,
@@ -52,20 +55,19 @@ class BookController extends Controller
                 return redirect()->route('user.books.create')->with('error', 'Please provide at least one book author');
         if($genres == null)
                 return redirect()->route('user.books.create')->with('error', 'Please provide at least one book genre');
-        Auth::user()->books()->create(
+        $book_model = Auth::user()->books()->create(
             [
-            'title' => $request->title,
-            'cover_image_url' => $request->cover_image_url,
-            'description' => $request->description,
-            'price' => $request->price,
-            'discount' => $request->discount,
-        ]);
-        dd($authors);
-        $book->authors()->attach($authors);
-        $book->genres()->attach($genres);
+                'title' => $request->title,
+                'cover_image_url' => $request->cover_image_url,
+                'description' => $request->description,
+                'price' => $request->price,
+                'discount' => $request->discount,
+            ]);
+        $book->authors()->attach($author_id, ['book_id' => $book_model->id]);
+        $book->genres()->attach($genre_id, ['book_id' => $book_model->id]);
 
-        //$book->authors()->sync($book_authors);
-        //$book->genres()->sync($book_genres);
+
+
         return redirect()->route('user.books.create')->with('success', 'Book created successfully');
     }
 

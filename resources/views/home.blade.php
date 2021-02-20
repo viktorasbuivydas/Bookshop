@@ -7,12 +7,12 @@
     <div class="page-breadcrumb">
         <div class="row align-items-center">
             <div class="col-5">
-                <h4 class="page-title">My Books</h4>
+                <h4 class="page-title">Stats</h4>
                 <div class="d-flex align-items-center">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{route('home')}}">Dashboard</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">My books</li>
+                            <li class="breadcrumb-item active" aria-current="page">Stats</li>
                         </ol>
                     </nav>
                 </div>
@@ -20,39 +20,48 @@
 
         </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Container fluid  -->
-    <!-- ============================================================== -->
     <div class="container-fluid">
-        <!-- ============================================================== -->
-        <!-- Start Page Content -->
-        <!-- ============================================================== -->
         <div class="row">
             <div class="col-12">
                         <div class="row">
-                            @forelse($books as $book)
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
-                                    <div class="card">
-                                        <a href="{{ route('books.show', $book)}}">
-                                            <img src="/storage/uploads/images/{{ $book->cover_image_url }}" class="card-img-top" alt="...">
-                                        </a>
-                                        <div class="card-body">
-                                            <h5 class="card-title">Title: {{ $book->title }}</h5>
-                                            <p class="card-text">Author: {{ $book->author }}</p>
-                                            <p class="card-text">Price: {{ $book->price}}$</p>
-                                        </div>
+                            <div class="col-sm-4">
+                                <div class="card text-white text-center bg-success mb-4">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Approved books <b>10</b></h4>
                                     </div>
                                 </div>
-                            @empty
-                                <div class="col-lg-12 text-center my-5 py-3 alert alert-danger center-block">No data found </div>
-                            @endforelse
-
-
-                        {{ $books->links() }}
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card text-white text-center bg-warning mb-4">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Pending books <b>10</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card text-white text-center bg-danger mb-4">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Rejected books <b>10</b></h4>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card mb-4">
+                            <div class="card-body text-muted">
+                                <h5 class="card-title">Search history</h5>
+                                <p class="card-text">
+                                    <ul>
+                                        <li>
+                                            test
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
