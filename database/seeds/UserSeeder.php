@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\User;
 class UserSeeder extends Seeder
 {
     /**
@@ -18,5 +19,6 @@ class UserSeeder extends Seeder
             'date_of_birth' => '1999-09-14',
             'role_id' => 1
         ]);
+
     }
 }

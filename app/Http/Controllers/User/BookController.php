@@ -51,9 +51,9 @@ class BookController extends Controller
         ->exists()){
             return redirect()->route('user.books.create')->with('error', 'Book already exists');
         }
-        if($authors == null)
+        if($author_id == null)
                 return redirect()->route('user.books.create')->with('error', 'Please provide at least one book author');
-        if($genres == null)
+        if($genre_id == null)
                 return redirect()->route('user.books.create')->with('error', 'Please provide at least one book genre');
         $book_model = Auth::user()->books()->create(
             [
