@@ -2,23 +2,20 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Book;
 use App\Http\Requests\BookRequest;
 use App\Http\Controllers\Controller;
 
 
 class BookController extends Controller
 {
-    public function __construct(){
-        $this->middleware('checkRole:admin');
-    }
+
     public function index()
     {
-        return view('user.books.index');
+        $books = Book::with(['authors'])->isPending()->latest()->simplePaginate(25);
+        return view('admin.books.index', compact('books'));
     }
-    public function approve()
-    {
-        return view('admin.books.approve');
-    }
+
     public function create()
     {
 
@@ -31,19 +28,31 @@ class BookController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Book $book)
     {
-        //
+
+        return view('admin.books.show', compact('book'));
     }
 
     public function edit($id)
     {
         //
     }
-
-    public function update(Request $request, $id)
+    public function update(Book $book, $id)
     {
-        //
+    }
+    public function approve($id, bool $is_approved)
+    {
+        $book = Book::find($id);
+        if($book->is_approved != null){
+            return redirect()->route('admin.books.index')->with('error', 'This book status is already changed');
+        }
+        else{
+            $book->is_approved = $is_approved;
+            $book->save();
+            return redirect()->route('admin.books.index')->with('success', 'Book status changed successfully');
+        }
+
     }
 
 

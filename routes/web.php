@@ -18,7 +18,6 @@ Route::get('/', 'IndexController@index')->name('index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('admin/books/approve', 'BookController@index')->name('admin.books.approve');
 Route::resource('books', 'BookController');
 
 //books
@@ -33,4 +32,6 @@ Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware' => 'checkRole:ad
     Route::resource('authors', Admin\AuthorController::class);
     Route::resource('reviews', Admin\ReviewController::class);
     Route::resource('reports', Admin\ReportController::class);
+    Route::resource('books', Admin\BookController::class);
+    Route::post('books/approve/{id}/{is_approved}', 'Admin\BookController@approve')->name('books.approve');
 });

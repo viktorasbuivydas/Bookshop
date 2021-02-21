@@ -31,7 +31,7 @@
                             class="hide-menu">My Books</span></a></li>
                 @admin
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                             href="{{ route('admin.books.approve') }}" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span
+                                             href="{{ route('admin.books.index') }}" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span
                             class="hide-menu">Approve books</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                              href="{{ route('admin.genres.index')}}" aria-expanded="false"><i
