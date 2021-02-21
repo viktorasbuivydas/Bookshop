@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Book;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+
 class IndexController extends Controller
 {
 
@@ -12,6 +14,7 @@ class IndexController extends Controller
         $books = Book::with(['authors'])
             ->when(request('search'), function ($query) {
                 $search = request('search');
+                Cookie::queue('search', $search);
                 $query->where('title', 'LIKE', "%{$search}%")
                 ->orWhereHas('authors', function($query) use ($search){
                     $query->where('author', 'LIKE', "%{$search}%");

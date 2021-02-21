@@ -13,7 +13,7 @@
 ## Search bar
 - [x] book search by title and author
 - [x] book list in the same layout as the landing page
-- [ ] a search bar with a cookie that tracks the previous search user had
+- [x] a search bar with a cookie that tracks the previous search user had
 
 ## Menu bar
 - [x] Login and registration button
@@ -30,13 +30,13 @@
 - [ ] users can leave reviews
 - [ ] users can rate book
 # User Account
-- [ ] they can change the password
-- [ ] they can change email
+- [x] they can change the password
+- [x] they can change email
 - [x] they can report a book (for example if there are discrepancies on some of the listed books)
 - [x] can upload a book to the listing, then the admin must confirm the book to be listed, then it appears on the landing page and searches
 - [ ] can manage their books
 - [ ] can give a review on a book (stars + comments)
 # Admin account
-- [ ] they can change the password
+- [x] they can change the password
 - [ ] can reply to user's report
 - [ ] can manage and update all the books

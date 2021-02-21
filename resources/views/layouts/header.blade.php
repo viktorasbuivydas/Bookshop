@@ -43,7 +43,7 @@
                 <!-- ============================================================== -->
                 <li class="nav-item search-box">
                     <form class="d-flex" method="GET" action="{{ route('index') }}">
-                        <input type="text" name="search" class="form-control" placeholder="Search for book">
+                        <input type="text" name="search" class="form-control" value="{{ Cookie::has('search') ? Request::cookie('search') : ''  }}"placeholder="Search for book">
                         <button class="btn btn-primary mx-2">Search</button>
                     </form>
                 </li>
