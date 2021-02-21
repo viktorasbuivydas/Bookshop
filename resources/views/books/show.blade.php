@@ -24,11 +24,21 @@
                     <div class="row my-3">
                         <div class="col-md-12">
                             Author:
+                            @foreach($book->authors as $author)
+                                <p class="btn btn-primary">
+                                    {{ $author->author }}
+                                </p>
+                            @endforeach
                         </div>
                     </div>
                     <div class="row my-3">
                         <div class="col-md-12">
                             Genre:
+                            @foreach($book->genres as $genre)
+                                <p class="btn btn-primary">
+                                    {{ $genre->genre }}
+                                </p>
+                            @endforeach
                         </div>
                     </div>
                     <div class="row">

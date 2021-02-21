@@ -11,8 +11,8 @@
 - [x] the book may have a discount (by percentage), and should be displayd in listing [10%]
 
 ## Search bar
-- [ ] book search by title and author
-- [ ] book list in the same layout as the landing page
+- [x] book search by title and author
+- [x] book list in the same layout as the landing page
 - [ ] a search bar with a cookie that tracks the previous search user had
 
 ## Menu bar
