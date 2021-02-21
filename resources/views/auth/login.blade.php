@@ -65,6 +65,11 @@
                             </div>
                         </div>
                     </form>
+                    <div class="col-md-12 text-center my-2">
+                        Already have an account? <a href="{{ route('register') }}">
+                            {{ __('Register') }}
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
