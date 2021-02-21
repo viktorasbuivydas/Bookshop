@@ -15,8 +15,7 @@ class CreateReportsTable extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->string('report_message');
-            $table->string('admin_message');
+            $table->string('admin_message')->nullable();
             $table->foreignId('book_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

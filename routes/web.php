@@ -18,13 +18,14 @@ Route::get('/', 'IndexController@index')->name('index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('admin/books/approve', 'BookController@index')->name('admin.books.approve');
 Route::resource('books', 'BookController');
-Route::get('admin/books/approve', 'Admin\BookController@approve')->name('admin.books.approve');
 
 //books
 Route::group(['prefix' => 'user', 'as'=>'user.', 'middleware' => 'auth'], function(){
     Route::resource('books', User\BookController::class);
     Route::resource('settings', User\SettingController::class);
+    Route::post('reports/{book}', 'User\ReportController@store')->name('reports.store');
 });
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware' => 'checkRole:admin'], function(){

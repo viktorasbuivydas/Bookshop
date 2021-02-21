@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Book;
 use App\Author;
 use App\Genre;
-use App\BookAuthor;
-use App\BookGenre;
 use App\Services\ImageService;
-use App\Services\AuthorService;
-use App\Services\GenreService;
 use App\Services\TrimService;
 
 class BookController extends Controller
@@ -98,7 +94,7 @@ class BookController extends Controller
                 foreach ($category_from_input as $data){
                     if($model::where($column, $data)->exists() == false){
                         $model_data = $model::create([$column => $data]);
-                        array_push($array_id, $model_data->id);
+                        $array_id[] = $model_data->id;
                     }
                 }
             }
