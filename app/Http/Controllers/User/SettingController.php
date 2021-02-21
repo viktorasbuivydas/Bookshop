@@ -4,7 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\SettingRequest;
 use Illuminate\Support\Facades\Auth;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class SettingController extends Controller
 {
@@ -20,10 +23,17 @@ class SettingController extends Controller
     }
 
 
-    public function store(BookRequest $request)
+    public function store(SettingRequest $request)
     {
-
-
+        $user = User::find(Auth::id());
+        if(!empty($request->email)){
+            $user->email = $request->email;
+        }
+        if(!empty($request->new_password)){
+            $user->password = Hash::make($request->new_password);
+        }
+        $user->save();
+        return redirect()->route('user.settings.index')->with('success', 'Your data changed succesfully');
     }
 
 
@@ -37,7 +47,7 @@ class SettingController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(SettingRequest $request, $id)
     {
         //
     }

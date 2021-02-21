@@ -18,17 +18,23 @@
         </div>
     </div>
     <div class="container-fluid">
-
+        @if(session('success'))
+            <div class="alert alert-success m-2">
+                {{ session('success') }}
+            </div>
+        @endif
+        <form action="{{ route('user.settings.store') }}" method="POST">
+            @csrf
         <div class="form-group row">
             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Email') }}</label>
 
             <div class="col-md-6">
-                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="new-email" placeholder="{{ Auth::user()->email }}">
+                <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" autocomplete="new-email" placeholder="{{ Auth::user()->email }}">
 
                 @error('email')
                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
         </div>
@@ -41,8 +47,8 @@
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
             <div class="col-md-1 m-auto mx-1">
@@ -54,12 +60,12 @@
             <label for="new_password" class="col-md-4 col-form-label text-md-right">{{ __('New Password') }}</label>
 
             <div class="col-md-6">
-                <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" required autocomplete="new-password">
+                <input id="new_password" type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password" autocomplete="new-password">
 
                 @error('new_password')
                 <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                    <strong>{{ $message }}</strong>
+                </span>
                 @enderror
             </div>
             <div class="col-md-1 m-auto mx-1">
@@ -73,6 +79,8 @@
                 </button>
             </div>
         </div>
+        </form>
+
     </div>
     <script src="{{ asset('src/js/password.js')}}"></script>
 @endsection
