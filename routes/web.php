@@ -24,6 +24,7 @@ Route::get('admin/books/approve', 'Admin\BookController@approve')->name('admin.b
 //books
 Route::group(['prefix' => 'user', 'as'=>'user.', 'middleware' => 'auth'], function(){
     Route::resource('books', User\BookController::class);
+    Route::resource('settings', User\SettingController::class);
 });
 
 Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware' => 'checkRole:admin'], function(){

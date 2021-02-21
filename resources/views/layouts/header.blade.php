@@ -76,6 +76,8 @@
 
                         <a class="dropdown-item" href="{{ route('home') }}"><i class="ti-home m-r-5 m-l-5"></i>
                             Dashboard</a>
+                        <a class="dropdown-item" href="{{ route('user.settings.index') }}"><i class="ti-user m-r-5 m-l-5"></i>
+                            Settings</a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-power-off m-r-5 m-l-5"></i>
                             Log out</a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

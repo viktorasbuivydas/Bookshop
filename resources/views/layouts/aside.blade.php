@@ -27,7 +27,7 @@
                 </li>
                 <!-- User Profile-->
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                             href="{{ route('home') }}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
+                                             href="{{ route('user.books.index') }}" aria-expanded="false"><i class="mdi mdi-view-dashboard"></i><span
                             class="hide-menu">My Books</span></a></li>
                 @admin
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
