@@ -51,6 +51,9 @@
                                     </span>
                                 @enderror
                             </div>
+                            <div class="col-md-1 m-auto mx-1">
+                                <a onClick="togglePassword()"><i class="fas fa-eye"></i></a>
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -92,4 +95,5 @@
         </div>
     </div>
 </div>
+<script src="{{ asset('src/js/password.js')}}"></script>
 @endsection

@@ -23,8 +23,8 @@
 - [x] must have "forgot password"
 - [x] must have a register button
 # Registration page
-- [ ] must have a log in button
-- [ ] must have an email, password with show password in it, confirm password and date of birth
+- [x] must have a log in button
+- [x] must have an email, password with show password in it, confirm password and date of birth
 # Book page
 - [x] must have description
 - [ ] users can leave reviews
