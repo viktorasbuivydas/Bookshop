@@ -20,10 +20,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3">
-                                <img width="200" src="/storage/uploads/images/{{ $book->cover_image_url }}">
+                            <div class="col-md-5">
+                                <img width="300" src="{{ $book->coverImagePath }}">
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-7">
                                 <h2>Description</h2>
                                 <hr>
                                 {{ $book->description }}

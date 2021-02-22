@@ -2,14 +2,13 @@
 
 namespace App\Services;
 use Illuminate\Support\Str;
-
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageService{
     public function storeImage($uploadedFile, $disk = 'public', $name)
     {
-        $folder = '\uploads\images\\';
-        $file = $uploadedFile->storeAs($folder, $name, $disk);
-        return $file;
+        $folder = 'storage\uploads\images\\';
+        $image = Image::make($uploadedFile->getRealPath())->resize(400, 700)->save(public_path($folder.$name));
     }
     public function uploadImage($request, $image_field_name){
         if($request->hasFile($image_field_name)){

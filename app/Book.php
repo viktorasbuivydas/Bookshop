@@ -37,6 +37,9 @@ class Book extends Model
     public function getisNewAttribute(){
         return $this->created_at > now()->subWeek();
     }
+    public function getCoverImagePathAttribute(){
+        return '/storage/uploads/images/'.$this->cover_image_url;
+    }
     public function getPriceAfterDiscountAttribute(){
         return $this->price * (1 - ($this->discount / 100));
     }

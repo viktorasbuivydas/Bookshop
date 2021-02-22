@@ -25,12 +25,11 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
-                            <img width="200" src="/storage/uploads/images/{{ $book->cover_image_url }}">
+                        <div class="col-md-5">
+                            <img width="300" src="{{ $book->coverImagePath }}">
                         </div>
-                        <div class="col-md-9">
-                            <h2>Description</h2>
-                            <hr>
+                        <div class="col-md-7">
+                                <h2>Description</h2>
                             {{$book->description}}
                         </div>
                    </div>
@@ -68,15 +67,30 @@
                                         <span data-rating="4"><i class="far fa-star"></i></span>
                                         <span data-rating="5"><i class="far fa-star"></i></span>
                                     </div>
+
                                 </div>
                             </div>
+                            @error('rating')
+                            <div class="row my-3">
+                                        <small>
+                                            <strong class="text-danger text-sm-left">{{ $message }}</strong>
+                                        </small>
+                            </div>
+                            @enderror
+
                             <input type="hidden" name="book_id" value="{{ $book->id }}"/>
-                            <input type="hidden" name="rating" id="rating"/>
+                            <input type="hidden" name="rating" id="rating" value="0"/>
+
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label for="review">Book review</label>
-                                        <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                                        <textarea class="form-control @error('review') is-invalid @enderror" name="review" id="review" rows="5"></textarea>
+                                        @error('review')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <button class="btn btn-primary" type="submit">Send a review</button>

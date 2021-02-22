@@ -25,10 +25,10 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-3">
-                                <img width="200" src="/storage/uploads/images/{{ $book->cover_image_url }}">
+                            <div class="col-md-5">
+                                <img width="300" src="{{ $book->coverImagePath }}">
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-7">
                                 <h2>Description</h2>
                                 <hr>
                                 {{$book->description}}
@@ -56,15 +56,28 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
-                                Rating: 4.5
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                Write a review
-                            </div>
+                            @forelse($book->reviews as $review)
+                                <div class="card">
+                                    <div class="card-header">
+                                        Rating:
+                                        @for($i=0; $i<5; $i++)
+                                            @if($i < $review->rating)
+                                                <span data-rating="1"><i class="fas fa-star"></i></span>
+                                            @else
+                                                <span data-rating="1"><i class="far fa-star"></i></span>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Review</h5>
+                                        <p class="card-text">{{ $review->review }}</p>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="alert alert-danger m-2">
+                                    No reviews were found
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </div>

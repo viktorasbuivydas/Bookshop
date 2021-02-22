@@ -13,7 +13,6 @@ class ReviewController extends Controller
 {
     public function store(ReviewRequest $request){
         $book = Book::where('is_approved', '!=', null)->where('id', $request->book_id)->firstOrFail();
-
         BookReview::create(
             [
                 'rating' => $request->rating,

@@ -5,7 +5,7 @@
 - [x] books displayed in 5x5 grid
 - [x] the book has a title with author, cover, and genre
 - [x] the book can have multiple authors and genres
-- [ ] all book covers must have consistent dimensions
+- [x] all book covers must have consistent dimensions
 - [x] when there are more than 25 books on a page, there will be [next] and [previous] buttons
 - [x] books uploaded last week should have something to display that they are [NEW]
 - [x] the book may have a discount (by percentage), and should be displayd in listing [10%]
