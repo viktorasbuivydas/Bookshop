@@ -27,15 +27,15 @@
 - [x] must have an email, password with show password in it, confirm password and date of birth
 # Book page
 - [x] must have description
-- [ ] users can leave reviews
-- [ ] users can rate book
+- [x] users can leave reviews
+- [x] users can rate book
 # User Account
 - [x] they can change the password
 - [x] they can change email
 - [x] they can report a book (for example if there are discrepancies on some of the listed books)
 - [x] can upload a book to the listing, then the admin must confirm the book to be listed, then it appears on the landing page and searches
 - [ ] can manage their books
-- [ ] can give a review on a book (stars + comments)
+- [x] can give a review on a book (stars + comments)
 # Admin account
 - [x] they can change the password
 - [ ] can reply to user's report
