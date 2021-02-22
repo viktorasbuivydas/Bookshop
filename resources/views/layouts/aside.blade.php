@@ -31,7 +31,10 @@
                             class="hide-menu">My Books</span></a></li>
                 @admin
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                             href="{{ route('admin.books.index') }}" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span
+                                             href="{{ route('admin.books.index') }}" aria-expanded="false"><i class="mdi mdi-book"></i><span
+                            class="hide-menu">All books</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                             href="{{ route('admin.books.pending') }}" aria-expanded="false"><i class="mdi mdi-notification-clear-all"></i><span
                             class="hide-menu">Approve books</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                              href="{{ route('admin.genres.index')}}" aria-expanded="false"><i
@@ -39,9 +42,7 @@
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                              href="{{route('admin.authors.index')}}" aria-expanded="false"><i class="mdi mdi-border-all"></i><span
                             class="hide-menu">Authors</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                             href="{{route('admin.reviews.index')}}" aria-expanded="false"><i class="mdi mdi-face"></i><span
-                            class="hide-menu">Reviews</span></a></li>
+
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                              href="{{route('admin.reports.index')}}" aria-expanded="false"><i class="mdi mdi-file"></i><span
                             class="hide-menu">Reports</span></a></li>

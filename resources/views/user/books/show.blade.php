@@ -17,16 +17,27 @@
                 <div class="card">
                     <div class="card-header dark text-white d-flex justify-content-between align-items-center">
                         {{ $book->title }}
-                        <form action="{{ route('user.reports.store', $book) }}" method="POST">
-                            @csrf
-                            <button class="btn btn-danger text-white mx-2">Report this book</button>
-                        </form>
-
+                        <div class="col-md-2 offset-2">
+                            <a href="{{ route('user.books.edit', $book) }}" class="btn btn-primary text-white mx-2">Edit</a>
+                        </div>
+                        <div class="col-md-2">
+                            <form action="{{ route('user.books.destroy', $book->id) }}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button class="btn btn-danger text-white mx-2" onClick="confirm('Are you sure you want to delete this book?')">Delete</button>
+                            </form>
+                        </div>
+                        <div class="col-md-3">
+                            <form action="{{ route('user.reports.store', $book) }}" method="POST">
+                                @csrf
+                                <button class="btn btn-danger text-white mx-2">Report</button>
+                            </form>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-5">
-                                <img width="300" src="{{ $book->coverImagePath }}">
+                                <img width="200" src="{{ $book->coverImagePath }}">
                             </div>
                             <div class="col-md-7">
                                 <h2>Description</h2>

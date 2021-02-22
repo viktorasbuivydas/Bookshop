@@ -5,10 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                
+
                 <div class="card-header">Reports</div>
                 <div class="card-body">
-                   My books
+                   @foreach($reports as $report)
+                       {{ $report->report }}
+                    @endforeach
                 </div>
             </div>
         </div>

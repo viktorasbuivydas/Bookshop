@@ -38,4 +38,7 @@ class User extends Authenticatable
     public function books(){
         return $this->hasMany(Book::class);
     }
+    public function scopeIsAdmin($query){
+        $query->where('role_id', 1);
+    }
 }

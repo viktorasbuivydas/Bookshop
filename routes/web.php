@@ -19,6 +19,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('books', 'BookController');
+Route::get('admin/books/pending/', 'Admin\BookController@pending')->middleware('checkRole:admin')->name('admin.books.pending');
 
 //books
 Route::group(['prefix' => 'user', 'as'=>'user.', 'middleware' => 'auth'], function(){
@@ -31,7 +32,6 @@ Route::group(['prefix' => 'user', 'as'=>'user.', 'middleware' => 'auth'], functi
 Route::group(['prefix' => 'admin', 'as'=>'admin.', 'middleware' => 'checkRole:admin'], function(){
     Route::resource('genres', Admin\GenreController::class);
     Route::resource('authors', Admin\AuthorController::class);
-    Route::resource('reviews', Admin\ReviewController::class);
     Route::resource('reports', Admin\ReportController::class);
     Route::resource('books', Admin\BookController::class);
     Route::post('books/approve/{id}/{is_approved}', 'Admin\BookController@approve')->name('books.approve');

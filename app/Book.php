@@ -4,7 +4,6 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\User;
 class Book extends Model
 {
     protected $fillable = [
@@ -24,6 +23,9 @@ class Book extends Model
     }
     public function reviews(){
         return $this->hasMany(BookReview::class);
+    }
+    public function reports(){
+        return $this->hasMany(Report::class);
     }
     public function scopeIsApproved($query){
         return $query->where('is_approved', true);

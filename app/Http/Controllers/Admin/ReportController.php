@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Report;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -13,7 +14,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('report.index');
+        $reports = Report::all();
+        return view('admin.reports.index', compact('reports'));
     }
 
     /**
@@ -22,7 +24,7 @@ class ReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
+    {
         return view('report.create');
     }
 
