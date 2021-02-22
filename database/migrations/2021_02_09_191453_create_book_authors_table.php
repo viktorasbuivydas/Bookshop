@@ -17,6 +17,7 @@ class CreateBookAuthorsTable extends Migration
             $table->id();
             $table->foreignId('author_id')->constrained();
             $table->foreignId('book_id')->constrained();
+            $table->unique(['author_id', 'book_id']);
         });
     }
 

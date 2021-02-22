@@ -24,6 +24,7 @@ Route::resource('books', 'BookController');
 Route::group(['prefix' => 'user', 'as'=>'user.', 'middleware' => 'auth'], function(){
     Route::resource('books', User\BookController::class);
     Route::resource('settings', User\SettingController::class);
+    Route::resource('reviews', User\ReviewController::class);
     Route::post('reports/{book}', 'User\ReportController@store')->name('reports.store');
 });
 

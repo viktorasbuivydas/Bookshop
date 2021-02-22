@@ -22,7 +22,7 @@
             @forelse($books as $book)
                 <div class="col-lg-3 col-md-4 col-sm-6 col-6 my-2">
                     <div class="card">
-                        <a href="{{ route('books.show', $book)}}">
+                        <a href="{{ route('user.books.show', $book)}}">
                             <img src="/storage/uploads/images/{{ $book->cover_image_url }}" class="card-img-top" alt="...">
                         </a>
                         @if($book->isNew)

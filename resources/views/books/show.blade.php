@@ -55,20 +55,62 @@
                             @endforeach
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            Rating: 4.5
+                    @if(!$book->reviews->contains('user_id', Auth::id()))
+                        <form action="{{ route('user.reviews.store') }}" method="POST">
+                            @csrf
+                            <div class="row text-center">
+                                <div class="col-md-12">
+                                    <div class="reviewStars">
+                                        Rate book:
+                                        <span data-rating="1"><i class="far fa-star"></i></span>
+                                        <span data-rating="2"><i class="far fa-star"></i></span>
+                                        <span data-rating="3"><i class="far fa-star"></i></span>
+                                        <span data-rating="4"><i class="far fa-star"></i></span>
+                                        <span data-rating="5"><i class="far fa-star"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="book_id" value="{{ $book->id }}"/>
+                            <input type="hidden" name="rating" id="rating"/>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="review">Book review</label>
+                                        <textarea class="form-control" name="review" id="review" rows="5"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="submit">Send a review</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    @endif
+                    @forelse($book->reviews as $review)
+                        <div class="card">
+                            <div class="card-header">
+                                Rating:
+                                @for($i=0; $i<5; $i++)
+                                    @if($i < $review->rating)
+                                        <span data-rating="1"><i class="fas fa-star"></i></span>
+                                    @else
+                                        <span data-rating="1"><i class="far fa-star"></i></span>
+                                    @endif
+                                @endfor
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Review</h5>
+                                <p class="card-text">{{ $review->review }}</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-12">
-                            Write a review
+                    @empty
+                        <div class="alert alert-danger m-2">
+                            No reviews were found
                         </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
     </div>
 </div>
+    <script src="{{ asset('src/js/rating.js') }}"></script>
 @endsection

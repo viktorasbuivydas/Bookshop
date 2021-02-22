@@ -47,3 +47,6 @@ body{
 .pagination{
     justify-content: end;
 }
+.card{
+    border: 1px solid #ddd;
+}

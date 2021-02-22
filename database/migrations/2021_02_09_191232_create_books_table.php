@@ -17,12 +17,13 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('cover_image_url');
-            $table->string('description', 5000);
+            $table->string('description', 5000)->unique();
             $table->boolean('is_approved')->nullable();
             $table->foreignId('user_id')->constrained();
             $table->float('price');
             $table->float('discount')->default(0);
             $table->timestamps();
+            $table->unique(['title', 'description']);
         });
     }
 

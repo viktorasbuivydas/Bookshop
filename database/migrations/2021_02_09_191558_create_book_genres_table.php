@@ -17,6 +17,7 @@ class CreateBookGenresTable extends Migration
             $table->id();
             $table->foreignId('genre_id')->constrained();
             $table->foreignId('book_id')->constrained();
+            $table->unique(['genre_id', 'book_id']);
         });
     }
 

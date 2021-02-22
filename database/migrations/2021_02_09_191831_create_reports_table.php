@@ -19,6 +19,7 @@ class CreateReportsTable extends Migration
             $table->foreignId('book_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
+            $table->unique(['book_id', 'user_id']);
         });
     }
 
