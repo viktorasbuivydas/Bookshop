@@ -6,10 +6,6 @@ use App\Book;
 
 class BookController extends Controller
 {
-    public function index()
-    {
-        return view('books.index');
-    }
 
     public function show(Book $book)
     {

@@ -7,7 +7,7 @@ Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('i
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('books', App\Http\Controllers\BookController::class);
+Route::get('books/{book}', [App\Http\Controllers\BookController::class, 'show'])->name('books.show');
 
 //books
 Route::group(['prefix' => 'user', 'as'=>'user.', 'middleware' => 'auth'], function(){
