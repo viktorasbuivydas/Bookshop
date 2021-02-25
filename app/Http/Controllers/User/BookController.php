@@ -32,7 +32,6 @@ class BookController extends Controller
         return view('user.books.create', compact('authors', 'genres'));
     }
 
-
     public function store(BookRequest $request)
     {
         (new ImageService())->uploadImage($request, 'cover_image_url');

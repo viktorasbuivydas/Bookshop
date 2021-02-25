@@ -17,44 +17,16 @@ class SettingController extends Controller
         return view('user.settings.index');
     }
 
-    public function create()
-    {
-
-    }
-
-
     public function store(SettingRequest $request)
     {
-        $user = User::find(Auth::id());
         if(!empty($request->email)){
-            $user->email = $request->email;
+            auth()->user()->email = $request->email;
         }
         if(!empty($request->new_password)){
-            $user->password = Hash::make($request->new_password);
+            auth()->user()->password = Hash::make($request->new_password);
         }
-        $user->save();
+        auth()->user()->update();
         return redirect()->route('user.settings.index')->with('success', 'Your data changed succesfully');
     }
 
-
-    public function show($id)
-    {
-        //abort(404)
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(SettingRequest $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
-    }
 }

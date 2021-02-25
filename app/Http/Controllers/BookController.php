@@ -11,7 +11,6 @@ use App\Book;
 
 class BookController extends Controller
 {
-
     public function index()
     {
         return view('books.index');
@@ -21,21 +20,5 @@ class BookController extends Controller
     {
         $book->with('reviews')->latest()->take(5)->get();
         return view('books.show', compact('book'));
-    }
-
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
     }
 }

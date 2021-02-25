@@ -19,31 +19,12 @@ class BookController extends Controller
         $books = Book::with(['authors'])->isPending()->latest()->simplePaginate(25);
         return view('admin.books.pending', compact('books'));
     }
-    public function create()
-    {
-
-    }
-
-
-    public function store(BookRequest $request)
-    {
-
-    }
-
 
     public function show(Book $book)
     {
-
         return view('admin.books.show', compact('book'));
     }
 
-    public function edit($id)
-    {
-        //
-    }
-    public function update(Book $book, $id)
-    {
-    }
     public function approve($id, bool $is_approved)
     {
         $book = Book::find($id);
@@ -56,11 +37,5 @@ class BookController extends Controller
             return redirect()->route('admin.books.index')->with('success', 'Book status changed successfully');
         }
 
-    }
-
-
-    public function destroy($id)
-    {
-        //
     }
 }
