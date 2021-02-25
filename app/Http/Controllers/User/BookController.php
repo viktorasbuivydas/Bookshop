@@ -37,14 +37,6 @@ class BookController extends Controller
         $author_id = $this->getBookCategories($authors, $request->all_authors, Author::class, 'author');
         $genre_id = $this->getBookCategories($genres, $request->all_genres, Genre::class, 'genre');
 
-        $book = new Book();
-        if($book->where([
-            'title' => $request->title,
-            'description' => $request->description
-        ])
-            ->exists()){
-            return redirect()->route('user.books.create')->with('error', 'Book already exists');
-        }
         if($author_id == null || $genre_id == null)
             return redirect()->route('user.books.create')->with('error', 'Please provide at least one book author and genre');
         $book_model = auth()->user()->books()->create(
@@ -55,6 +47,7 @@ class BookController extends Controller
                 'price' => $request->price,
                 'discount' => $request->discount,
             ]);
+        $book = new Book();
         $book->authors()->attach($author_id, ['book_id' => $book_model->id]);
         $book->genres()->attach($genre_id, ['book_id' => $book_model->id]);
         return redirect()->route('user.books.create')->with('success', 'Book created successfully');

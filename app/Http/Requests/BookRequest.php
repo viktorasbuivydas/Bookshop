@@ -24,8 +24,8 @@ class BookRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:100'],
-            'description' => ['required', 'max:5000'],
+            'title' => ['required', 'max:100', 'unique:books,title'],
+            'description' => ['required', 'max:5000', 'unique:books,description'],
             'cover_image_url' => ['file', 'image:mimes:jpeg, png, jpg', 'max:2048'],
             'price' => ['required', 'numeric', 'min:0'],
             'discount' => ['required', 'numeric', 'min:0', 'max:100'],
