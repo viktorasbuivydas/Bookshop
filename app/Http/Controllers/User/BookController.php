@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Book;
 use App\Author;
 use App\Genre;
@@ -21,7 +20,7 @@ class BookController extends Controller
     }
     public function index()
     {
-        $books = Book::with('authors')->where('user_id', Auth::id())->isApproved()->latest()->simplePaginate(25);
+        $books = Book::with('authors')->where('user_id', auth()->id())->isApproved()->latest()->simplePaginate(25);
         return view('user.books.index', compact('books'));
     }
 
@@ -104,8 +103,7 @@ class BookController extends Controller
 
     public function destroy(Book $book)
     {
-
-        if($book->user_id !== Auth::id() || !User::isAdmin())
+        if($book->user_id !== auth()->id() || !User::isAdmin())
             abort(404);
 
         $book->authors()->detach();
@@ -125,10 +123,6 @@ class BookController extends Controller
                     }
                 }
             }
-
         return $array_id;
-    }
-    public function prepareBook(BookRequest $request){
-
     }
 }

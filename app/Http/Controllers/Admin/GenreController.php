@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use App\Genre;
 
 class GenreController extends Controller
@@ -25,7 +24,7 @@ class GenreController extends Controller
         $request->validate([
             'genre' => ['required', 'min:4', 'max:20', 'unique:genres,genre']
         ]);
-        Genre::create(['genre' => $request->genre ]);
+        Genre::create(['genre' => $request->genre]);
         return redirect()->route('admin.genres.create')->with('success', 'Genre created successfully');
     }
 
