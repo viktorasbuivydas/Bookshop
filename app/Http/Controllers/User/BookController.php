@@ -15,9 +15,6 @@ use App\Services\TrimService;
 
 class BookController extends Controller
 {
-    public function __construct(){
-        $this->middleware('auth');
-    }
     public function index()
     {
         $books = Book::with('authors')->where('user_id', auth()->id())->isApproved()->latest()->simplePaginate(25);
