@@ -50,7 +50,7 @@ class BookController extends Controller
         }
         if($author_id == null || $genre_id == null)
             return redirect()->route('user.books.create')->with('error', 'Please provide at least one book author and genre');
-        $book_model = Auth::user()->books()->create(
+        $book_model = auth()->user()->books()->create(
             [
                 'title' => $request->title,
                 'cover_image_url' => $request->cover_image_url,
@@ -63,7 +63,6 @@ class BookController extends Controller
         return redirect()->route('user.books.create')->with('success', 'Book created successfully');
 
     }
-
 
     public function show(Book $book)
     {
@@ -86,7 +85,6 @@ class BookController extends Controller
             'price' => ['required', 'numeric', 'min:0'],
             'discount' => ['required', 'numeric', 'min:0', 'max:100'],
         ]);
-        $user = new User();
         $book = Book::findOrFail($id);
         if($book->id != Auth::id() || !User::isAdmin()){
             abort(404);
@@ -100,7 +98,6 @@ class BookController extends Controller
 
     }
 
-
     public function destroy(Book $book)
     {
         if($book->user_id !== auth()->id() || !User::isAdmin())
@@ -113,6 +110,7 @@ class BookController extends Controller
         $book->delete();
         return redirect()->route('user.books.index');
     }
+
     private function getBookCategories($category_from_input, $category_from_database, $model, $column){
             $array_id = $category_from_database;
             if($category_from_input != null){

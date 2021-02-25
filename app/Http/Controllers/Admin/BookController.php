@@ -14,6 +14,7 @@ class BookController extends Controller
         $books = Book::with(['authors'])->isApproved()->latest()->simplePaginate(25);
         return view('admin.books.index', compact('books'));
     }
+
     public function pending(){
         $books = Book::with(['authors'])->isPending()->latest()->simplePaginate(25);
         return view('admin.books.pending', compact('books'));

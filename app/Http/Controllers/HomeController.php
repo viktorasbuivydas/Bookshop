@@ -14,9 +14,9 @@ class HomeController extends Controller
     public function index()
     {
         $books = Book::select('is_approved')->get();
-        $approved_book_count = $books->where('is_approved', 1)->count();
-        $pending_book_count = $books->where('is_approved', NULL)->count();
-        $rejected_book_count = $books->where('is_approved', 0)->count();
+        $approved_book_count = $books->where('is_approved', true)->count();
+        $pending_book_count = $books->whereNull('is_approved')->count();
+        $rejected_book_count = $books->where('is_approved', false)->whereNotNull('is_approved')->count();
         return view('home', compact('approved_book_count', 'pending_book_count', 'rejected_book_count'));
     }
 }
