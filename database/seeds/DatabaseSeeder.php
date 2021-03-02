@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             GenreSeeder::class,
             //BookSeeder::class
-           //User::factory()->count(50)->create()
        ]);
+        User::factory(10)->create();
+
     }
 }

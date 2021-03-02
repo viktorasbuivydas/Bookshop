@@ -626,7 +626,7 @@
   var NAME = 'alert';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
-  var DATA_API_KEY = '.data-api';
+  var DATA_API_KEY = '.data-Api';
   var SELECTOR_DISMISS = '[data-bs-dismiss="alert"]';
   var EVENT_CLOSE = "close" + EVENT_KEY;
   var EVENT_CLOSED = "closed" + EVENT_KEY;
@@ -772,7 +772,7 @@
   var NAME$1 = 'button';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
-  var DATA_API_KEY$1 = '.data-api';
+  var DATA_API_KEY$1 = '.data-Api';
   var CLASS_NAME_ACTIVE = 'active';
   var SELECTOR_DATA_TOGGLE = '[data-bs-toggle="button"]';
   var EVENT_CLICK_DATA_API$1 = "click" + EVENT_KEY$1 + DATA_API_KEY$1;
@@ -1028,7 +1028,7 @@
   var NAME$2 = 'carousel';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
-  var DATA_API_KEY$2 = '.data-api';
+  var DATA_API_KEY$2 = '.data-Api';
   var ARROW_LEFT_KEY = 'ArrowLeft';
   var ARROW_RIGHT_KEY = 'ArrowRight';
   var TOUCHEVENT_COMPAT_WAIT = 500; // Time for mouse compat events to fire after touch
@@ -1638,7 +1638,7 @@
   var NAME$3 = 'collapse';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
-  var DATA_API_KEY$3 = '.data-api';
+  var DATA_API_KEY$3 = '.data-Api';
   var Default$1 = {
     toggle: true,
     parent: ''
@@ -2731,7 +2731,7 @@
   /*
   given a DOM element, return the list of all scroll parents, up the list of ancesors
   until we get to the top window object. This list is what we attach scroll listeners
-  to, because if any of these parent elements scroll, we'll need to re-calculate the 
+  to, because if any of these parent elements scroll, we'll need to re-calculate the
   reference element's position.
   */
 
@@ -3754,7 +3754,7 @@
   var NAME$4 = 'dropdown';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
-  var DATA_API_KEY$4 = '.data-api';
+  var DATA_API_KEY$4 = '.data-Api';
   var ESCAPE_KEY = 'Escape';
   var SPACE_KEY = 'Space';
   var TAB_KEY = 'Tab';
@@ -4237,7 +4237,7 @@
   var NAME$5 = 'modal';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
-  var DATA_API_KEY$5 = '.data-api';
+  var DATA_API_KEY$5 = '.data-Api';
   var ESCAPE_KEY$1 = 'Escape';
   var Default$3 = {
     backdrop: true,
@@ -5938,7 +5938,7 @@
   var NAME$8 = 'scrollspy';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
-  var DATA_API_KEY$6 = '.data-api';
+  var DATA_API_KEY$6 = '.data-Api';
   var Default$6 = {
     offset: 10,
     method: 'auto',
@@ -6238,7 +6238,7 @@
   var NAME$9 = 'tab';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
-  var DATA_API_KEY$7 = '.data-api';
+  var DATA_API_KEY$7 = '.data-Api';
   var EVENT_HIDE$3 = "hide" + EVENT_KEY$9;
   var EVENT_HIDDEN$3 = "hidden" + EVENT_KEY$9;
   var EVENT_SHOW$3 = "show" + EVENT_KEY$9;

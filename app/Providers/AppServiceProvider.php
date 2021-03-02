@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Sanctum\PersonalAccessToken;
+use Laravel\Sanctum\Sanctum;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        Sanctum::ignoreMigrations();
     }
 
     /**
@@ -25,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
         Blade::if('admin', function () {
             return Auth::user()->role_id == 1;
         });

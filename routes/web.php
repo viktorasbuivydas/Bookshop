@@ -2,13 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
-
+Route::get('/{any}', [App\Http\Controllers\IndexController::class, 'index'])->where('any', '.*');
+/*
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('books/{book}', [App\Http\Controllers\BookController::class, 'show'])->name('books.show');
-
 //books
 Route::group(['namespace' => 'User', 'prefix'=> 'user', 'as'=>'user.', 'middleware' => 'auth'], function(){
     Route::resource('books', BookController::class);
@@ -26,3 +24,6 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as'=>'admin.', 'midd
     Route::get('pending', [App\Http\Controllers\Admin\BookController::class, 'pending'])->name('books.pending');
 
 });
+ */
+
+//Route::get('/{any}', [App\Http\Controllers\IndexController::class, 'index'])->where('any', '.*');

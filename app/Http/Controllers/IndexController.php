@@ -10,7 +10,8 @@ class IndexController extends Controller
 
     public function index()
     {
-        $books = Book::with(['authors'])
+        /*
+         $books = Book::with(['authors'])
             ->when(request('search'), function ($query) {
                 $search = request('search');
                 Cookie::queue('search', $search);
@@ -20,6 +21,7 @@ class IndexController extends Controller
                 });
             })
             ->isApproved()->latest()->simplePaginate(25);
-        return view('welcome', compact('books'));
+         */
+        return view('index');
     }
 }
