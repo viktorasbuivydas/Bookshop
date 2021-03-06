@@ -1,14 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-use App\Role;
 
 class Role extends Model
 {
     protected $fillable = [
-        'role', 
+        'role',
     ];
 }

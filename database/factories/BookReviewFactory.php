@@ -1,18 +1,20 @@
 <?php
+
 namespace Database\Factories;
 
 use App\Models\Book;
+use App\Models\BookReview;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class BookFactory extends Factory
+class BookReviewFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Book::class;
+    protected $model = BookReview::class;
 
     /**
      * Define the model's default state.
@@ -21,15 +23,13 @@ class BookFactory extends Factory
      */
     public function definition()
     {
+        $books = Book::where('is_approved', true)->get();
         $users = User::all();
         return [
-            'title' => $this->faker->title,
-            'cover_image_url' => 'test',
-            'description' => $this->faker->text($maxNbChars = 200),
-            'is_approved' => true,
+            'rating' => $this->faker->numberBetween(1, 5),
+            'review' => $this->faker->realText(100),
+            'book_id' => $books->random()->id,
             'user_id' => $users->random()->id,
-            'price' => $this->faker->numberBetween(1, 100),
-            'discount' => $this->faker->numberBetween(0, 100)
         ];
     }
 }

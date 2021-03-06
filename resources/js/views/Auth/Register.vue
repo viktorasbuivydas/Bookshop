@@ -55,7 +55,7 @@
                                 id="date"
                                 v-model="details.date_of_birth"
                             />
-                            <Error :error="$store.state.errors.password"/>
+                            <Error :error="$store.state.errors.date_of_birth"/>
                         </div>
                         <button type="button" @click="register" class="btn btn-primary">
                             Sign up

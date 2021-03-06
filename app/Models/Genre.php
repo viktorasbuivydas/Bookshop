@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-use App\Book;
 
 class Genre extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'genre'
     ];

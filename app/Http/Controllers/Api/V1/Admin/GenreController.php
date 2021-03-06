@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Api\V1\Admin;
+use App\Http\Controllers\Api\V1\Controller;
 use Illuminate\Http\Request;
-use App\Genre;
+use App\Models\Genre;
 
 class GenreController extends Controller
 {

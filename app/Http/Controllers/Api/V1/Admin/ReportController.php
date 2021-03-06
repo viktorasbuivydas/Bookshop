@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
-use App\Http\Controllers\Controller;
-use App\Report;
+namespace App\Http\Controllers\Api\V1\Admin;
+use App\Http\Controllers\Api\V1\Controller;
+use App\Models\Report;
 
 class ReportController extends Controller
 {

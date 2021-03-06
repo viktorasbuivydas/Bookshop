@@ -119,8 +119,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 _this.sendLoginRequest(_this.details).then(function () {
                   window.location.href = "/home";
                 })["catch"](function (error) {
-                  console.log('error');
-                  console.log(error.response.status);
+                  console.log(error.message); //this.$store.commit("setErrors", error.response.data.message);
                 });
 
               case 2:

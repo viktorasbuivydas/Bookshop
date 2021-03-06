@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Api\V1\Admin;
 
-use App\Book;
-use App\Http\Controllers\Controller;
+use App\Models\Book;
+use App\Http\Controllers\Api\V1\Controller;
 
 
 class BookController extends Controller

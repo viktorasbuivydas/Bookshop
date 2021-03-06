@@ -399,7 +399,7 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("Error", {
-                  attrs: { error: _vm.$store.state.errors.password }
+                  attrs: { error: _vm.$store.state.errors.date_of_birth }
                 })
               ],
               1

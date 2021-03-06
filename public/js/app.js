@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"index":"index","vendors~login~register":"vendors~login~register","login":"login","register":"register"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"home":"home","index":"index","vendors~login~register":"vendors~login~register","login":"login","register":"register"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -54739,6 +54739,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+var guest = function guest(to, from, next) {
+  if (!localStorage.getItem("authToken")) {
+    return next();
+  } else {
+    return next("/");
+  }
+};
+
+var auth = function auth(to, from, next) {
+  if (localStorage.getItem("authToken")) {
+    return next();
+  } else {
+    return next("/login");
+  }
+};
+
 var routes = [{
   path: '/',
   name: 'index',
@@ -54748,14 +54765,23 @@ var routes = [{
 }, {
   path: '/login',
   name: 'login',
+  beforeEnter: guest,
   component: function component() {
     return Promise.all(/*! import() | login */[__webpack_require__.e("vendors~login~register"), __webpack_require__.e("login")]).then(__webpack_require__.bind(null, /*! ../views/Auth/Login.vue */ "./resources/js/views/Auth/Login.vue"));
   }
 }, {
   path: '/register',
   name: 'register',
+  beforeEnter: guest,
   component: function component() {
     return Promise.all(/*! import() | register */[__webpack_require__.e("vendors~login~register"), __webpack_require__.e("register")]).then(__webpack_require__.bind(null, /*! ../views/Auth/Register.vue */ "./resources/js/views/Auth/Register.vue"));
+  }
+}, {
+  path: '/home',
+  name: 'home',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | home */ "home").then(__webpack_require__.bind(null, /*! ../views/Home/Index.vue */ "./resources/js/views/Home/Index.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

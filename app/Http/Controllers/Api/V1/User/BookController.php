@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Api\V1\User;
 
 use App\Http\Requests\BookRequest;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Api\V1\Controller;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
-use App\Book;
-use App\Author;
-use App\Genre;
+use App\Models\Book;
+use App\Models\Author;
+use App\Models\Genre;
 use App\Services\ImageService;
 use App\Services\TrimService;
 
@@ -17,6 +17,7 @@ class BookController extends Controller
 {
     public function index()
     {
+
         $books = Book::with('authors')->where('user_id', auth()->id())->isApproved()->latest()->simplePaginate(25);
         return view('user.books.index', compact('books'));
     }
@@ -57,14 +58,6 @@ class BookController extends Controller
     public function show(Book $book)
     {
         return view('user.books.show', compact('book'));
-    }
-
-    public function edit($id)
-    {
-        $authors = Author::all();
-        $genres = Genre::all();
-        $book = Book::with(['authors', 'genres'])->findOrFail($id);
-        return view('user.books.edit', compact(['authors', 'genres', 'book']));
     }
 
     public function update(Request $request, $id)

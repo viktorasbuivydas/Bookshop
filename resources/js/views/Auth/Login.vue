@@ -67,8 +67,8 @@ export default {
                 window.location.href = "/home";
             })
                 .catch(error => {
-                   console.log('error')
-                    console.log(error.response.status)
+                    console.log(error.message)
+                    //this.$store.commit("setErrors", error.response.data.message);
                 });
         }
     }
