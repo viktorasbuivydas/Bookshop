@@ -5,14 +5,14 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter);
 
 const guest = (to, from, next) => {
-    if (localStorage.getItem("authToken")) {
+    if (!localStorage.getItem("token")) {
         return next();
     } else {
         return next("/login");
     }
 };
 const auth = (to, from, next) => {
-    if (localStorage.getItem("authToken")) {
+    if (localStorage.getItem("token")) {
         return next();
     } else {
         return next("/login");

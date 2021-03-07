@@ -17,7 +17,7 @@ Route::group(['namespace' => 'Api\\V1', 'as' => 'api.', 'prefix' => 'v1'], funct
         Route::apiResource('reviews', ReviewController::class, ['only' => ['store']]);
 
         Route::post('reports/{book}', [App\Http\Controllers\Api\V1\User\ReportController::class, 'store'])->name('reports.store');
-        Route::post('/auth/logout', [App\Http\Controllers\Api\V1\AuthController::class, 'logout']);
+        Route::post('logout', [App\Http\Controllers\Api\V1\AuthController::class, 'logout']);
     });
     // Api/v1/admin/
     Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'as'=>'admin.', 'middleware' => 'checkRole:admin'], function(){

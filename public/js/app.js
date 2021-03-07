@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"home":"home","index":"index","vendors~login~register":"vendors~login~register","login":"login","register":"register"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"home":"home","vendors~index":"vendors~index","index":"index","vendors~login~register":"vendors~login~register","login":"login","register":"register"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -2043,22 +2043,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Header: _components_Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  computed: {},
   created: function created() {
-    this.getUserData();
+    this.isLoggedIn();
   },
-  computed: {
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('auth', ['getUserData'])), {}, {
     isLoggedIn: function isLoggedIn() {
-      return this.$store.getters["auth/user"];
+      if (localStorage.getItem('token')) {
+        this.getUserData();
+      }
     }
-  },
-  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])("auth", ["getUserData"]))
+  })
 });
 
 /***/ }),
@@ -37784,13 +37785,7 @@ var render = function() {
           "data-boxed-layout": "full"
         }
       },
-      [
-        _c("Header"),
-        _vm._v(" "),
-        _vm.isLoggedIn ? _c("div", [_vm._v("logged in")]) : _vm._e(),
-        _vm._v(" "),
-        _c("router-view")
-      ],
+      [_c("Header"), _vm._v(" "), _c("router-view")],
       1
     )
   ])
@@ -54737,7 +54732,7 @@ axios__WEBPACK_IMPORTED_MODULE_6___default.a.interceptors.response.use(function 
     _store__WEBPACK_IMPORTED_MODULE_5__["default"].commit("setErrors", error.response.data.errors);
   } else if (error.response.status === 401) {
     _store__WEBPACK_IMPORTED_MODULE_5__["default"].commit("auth/setUserData", null);
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("token");
     _router__WEBPACK_IMPORTED_MODULE_4__["default"].push({
       name: "login"
     });
@@ -54747,7 +54742,7 @@ axios__WEBPACK_IMPORTED_MODULE_6___default.a.interceptors.response.use(function 
 });
 axios__WEBPACK_IMPORTED_MODULE_6___default.a.interceptors.request.use(function (config) {
   config.headers.common = {
-    Authorization: "Bearer ".concat(localStorage.getItem("authToken")),
+    Authorization: "Bearer ".concat(localStorage.getItem("token")),
     "Content-Type": "application/json",
     Accept: "application/json"
   };
@@ -54894,7 +54889,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 var guest = function guest(to, from, next) {
-  if (localStorage.getItem("authToken")) {
+  if (!localStorage.getItem("token")) {
     return next();
   } else {
     return next("/login");
@@ -54902,7 +54897,7 @@ var guest = function guest(to, from, next) {
 };
 
 var auth = function auth(to, from, next) {
-  if (localStorage.getItem("authToken")) {
+  if (localStorage.getItem("token")) {
     return next();
   } else {
     return next("/login");
@@ -54913,7 +54908,7 @@ var routes = [{
   path: '/',
   name: 'index',
   component: function component() {
-    return __webpack_require__.e(/*! import() | index */ "index").then(__webpack_require__.bind(null, /*! ../views/Index.vue */ "./resources/js/views/Index.vue"));
+    return Promise.all(/*! import() | index */[__webpack_require__.e("vendors~index"), __webpack_require__.e("index")]).then(__webpack_require__.bind(null, /*! ../views/Index.vue */ "./resources/js/views/Index.vue"));
   }
 }, {
   path: '/login',
@@ -54982,7 +54977,7 @@ var VUE_APP_API_URL = '/api/v1/';
         commit('setUserData', response.data);
         console.log(response);
       })["catch"](function () {
-        localStorage.removeItem('authToken');
+        localStorage.removeItem('token');
       });
     },
     sendLoginRequest: function sendLoginRequest(_ref2, data) {
@@ -54992,8 +54987,8 @@ var VUE_APP_API_URL = '/api/v1/';
       });
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(VUE_APP_API_URL + 'auth/login', data).then(function (response) {
         if (response.status == 200) {
-          var token = resp.data.token;
-          localStorage.setItem('authToken', token);
+          var token = response.data.data.token;
+          localStorage.setItem('token', token);
           axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = token;
         }
       });
@@ -55005,8 +55000,10 @@ var VUE_APP_API_URL = '/api/v1/';
       });
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(VUE_APP_API_URL + 'auth/register', data).then(function (response) {
         if (response.status == 200) {
+          var token = response.data.data.token;
           commit('setUserData', response.data.user);
-          localStorage.setItem('authToken', response.data.token);
+          localStorage.setItem('token', token);
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = token;
         }
       });
     },
@@ -55017,7 +55014,7 @@ var VUE_APP_API_URL = '/api/v1/';
       commit('setUserData', null);
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(VUE_APP_API_URL + 'auth/logout').then(function (response) {
         if (response.status == 200) {
-          localStorage.removeItem('authToken');
+          localStorage.removeItem('token');
 
           _this.$router.push('/');
         }

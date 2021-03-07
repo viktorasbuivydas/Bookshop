@@ -51,11 +51,30 @@
             </div>
         -->
         home
-        </div>
+    </div>
 </template>
 
 <script>
-export default {
+import User from '../../services/User/User.js'
+import {mapActions} from 'vuex'
 
+export default {
+    data() {
+        return {
+            isLoggedIn: false
+        }
+    },
+    created() {
+       // this.loadUser()
+    },
+    methods: {
+        ...mapActions('auth', ['getUserData']),
+        loadUser() {
+            this.getUserData()
+                .then(() => {
+                    this.isLoggedIn = true
+                });
+        }
+    }
 }
 </script>

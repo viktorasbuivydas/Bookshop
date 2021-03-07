@@ -10,6 +10,11 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_BookService_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/BookService.js */ "./resources/js/services/BookService.js");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1__);
+//
+//
+//
 //
 //
 //
@@ -17,7 +22,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    pagination: laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
   data: function data() {
     return {
       books: {}
@@ -30,7 +39,8 @@ __webpack_require__.r(__webpack_exports__);
     loadBooks: function loadBooks() {
       var _this = this;
 
-      _services_BookService_js__WEBPACK_IMPORTED_MODULE_0__["default"].get().then(function (response) {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      _services_BookService_js__WEBPACK_IMPORTED_MODULE_0__["default"].index(page).then(function (response) {
         _this.books = response.data;
       });
     }
@@ -54,9 +64,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container justify-content-center" }, [
-    _vm._v("\n    " + _vm._s(_vm.books) + "\n")
-  ])
+  return _c(
+    "div",
+    { staticClass: "container justify-content-center" },
+    [
+      _c(
+        "ul",
+        _vm._l(_vm.books.data, function(book) {
+          return _c("li", { key: book.id }, [_vm._v(" " + _vm._s(book.title))])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("pagination", {
+        attrs: { data: _vm.books },
+        on: { "pagination-change-page": _vm.loadBooks }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -91,8 +117,8 @@ var BookService = /*#__PURE__*/function () {
 
   _createClass(BookService, [{
     key: "index",
-    value: function index() {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/v1/books');
+    value: function index(page) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/v1/books?page=' + page);
     }
   }, {
     key: "show",

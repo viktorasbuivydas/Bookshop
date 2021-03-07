@@ -7,6 +7,7 @@ import App from './App.vue';
 import router from './router';
 import store from './store'
 import axios from 'axios';
+
 Vue.use(VueRouter)
 Vue.use(Vuex)
 axios.interceptors.response.use(
@@ -16,18 +17,18 @@ axios.interceptors.response.use(
             store.commit("setErrors", error.response.data.errors);
         } else if (error.response.status === 401) {
             store.commit("auth/setUserData", null);
-            localStorage.removeItem("authToken");
-            router.push({ name: "login" });
+            localStorage.removeItem("token");
+            router.push({name: "login"});
         } else {
             return Promise.reject(error);
         }
     }
 );
 
-axios.interceptors.request.use(function(config) {
+axios.interceptors.request.use(function (config) {
     config.headers.common = {
 
-        Authorization: `Bearer ${localStorage.getItem("authToken")}`,
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "application/json",
         Accept: "application/json"
     };

@@ -5,7 +5,6 @@
                  data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 
             <Header/>
-                <div v-if="isLoggedIn">logged in</div>
 
                 <router-view></router-view>
         </div>
@@ -13,21 +12,26 @@
 </template>
 <script>
 import Header from './components/Header.vue'
-import {mapGetters, mapActions} from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
+
 export default{
     components: {
         Header,
     },
-    created(){
-        this.getUserData()
-    },
+
     computed : {
-        isLoggedIn : function(){
-            return this.$store.getters["auth/user"]
-        }
+
+    },
+    created() {
+      this.isLoggedIn()
     },
     methods: {
-        ...mapActions("auth", ["getUserData"]),
+        ...mapActions('auth', ['getUserData']),
+        isLoggedIn(){
+            if(localStorage.getItem('token')){
+                this.getUserData();
+            }
+        }
     }
 
 }
