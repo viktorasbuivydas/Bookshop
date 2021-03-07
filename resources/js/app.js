@@ -34,9 +34,10 @@ axios.interceptors.request.use(function(config) {
 
     return config;
 });
-
 new Vue({
     router,
     store,
     render: h => h(App)
 }).$mount('#app');
+
+

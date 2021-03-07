@@ -9,18 +9,31 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_BookService_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/BookService.js */ "./resources/js/services/BookService.js");
 //
 //
 //
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  data: {
-    "return": {
-      books: []
-    },
-    mounted: {}
+  data: function data() {
+    return {
+      books: {}
+    };
+  },
+  mounted: function mounted() {
+    this.loadBooks();
+  },
+  methods: {
+    loadBooks: function loadBooks() {
+      var _this = this;
+
+      _services_BookService_js__WEBPACK_IMPORTED_MODULE_0__["default"].get().then(function (response) {
+        _this.books = response.data;
+      });
+    }
   }
 });
 
@@ -42,13 +55,66 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container justify-content-center" }, [
-    _vm._v("\n    index\n")
+    _vm._v("\n    " + _vm._s(_vm.books) + "\n")
   ])
 }
 var staticRenderFns = []
 render._withStripped = true
 
 
+
+/***/ }),
+
+/***/ "./resources/js/services/BookService.js":
+/*!**********************************************!*\
+  !*** ./resources/js/services/BookService.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var BookService = /*#__PURE__*/function () {
+  function BookService() {
+    _classCallCheck(this, BookService);
+  }
+
+  _createClass(BookService, [{
+    key: "index",
+    value: function index() {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/v1/books');
+    }
+  }, {
+    key: "show",
+    value: function show(id) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('link', id);
+    }
+  }, {
+    key: "update",
+    value: function update(id, data) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('link' + id, data);
+    }
+  }, {
+    key: "destroy",
+    value: function destroy(id) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]('link' + id);
+    }
+  }]);
+
+  return BookService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new BookService());
 
 /***/ }),
 

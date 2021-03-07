@@ -15,6 +15,7 @@ class Book extends Model
     protected $casts = [
         'price' => 'float'
     ];
+    protected $perPage = 25;
     public function user(){
         return $this->belongsTo(User::class);
     }

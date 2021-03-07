@@ -1,17 +1,27 @@
 <template>
     <div class="container justify-content-center">
-        index
+        {{ books }}
     </div>
 </template>
 
 <script>
+import BookService from '../services/BookService.js'
 export default {
-    data: {
-        return: {
-            books: [],
-        },
-        mounted: {
+    data() {
+        return {
+            books: {},
+        }
 
+    },
+    mounted() {
+        this.loadBooks()
+    },
+    methods: {
+        loadBooks(){
+            BookService.get()
+            .then((response) => {
+                this.books = response.data
+            })
         }
     }
 }

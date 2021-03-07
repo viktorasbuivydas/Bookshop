@@ -10,7 +10,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        return BookResource::collection(Book::with(['authors'])
+        return BookResource::collection(Book::with(['authors', 'genres'])
             ->when(request('search'), function ($query) {
                 $search = request('search');
                 //Cookie::queue('search', $search);
@@ -19,11 +19,11 @@ class BookController extends Controller
                         $query->where('author', 'LIKE', "%{$search}%");
                     });
             })
-            ->isApproved()->latest()->get());
+            ->isApproved()->latest()->paginate());
     }
 
     public function show(Book $book)
     {
-        return BookResource::collection($book->with('reviews')->latest()->take(5)->get());
+        return $book->is_approved ? new BookResource($book) : abort(404);
     }
 }

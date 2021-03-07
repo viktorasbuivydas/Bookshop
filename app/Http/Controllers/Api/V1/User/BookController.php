@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1\User;
 use App\Http\Requests\BookRequest;
 use App\Http\Controllers\Api\V1\Controller;
 
+use App\Http\Resources\BookResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Book;
@@ -18,15 +19,12 @@ class BookController extends Controller
     public function index()
     {
 
-        $books = Book::with('authors')->where('user_id', auth()->id())->isApproved()->latest()->simplePaginate(25);
-        return view('user.books.index', compact('books'));
-    }
-
-    public function create()
-    {
-        $authors = Author::all();
-        $genres = Genre::all();
-        return view('user.books.create', compact('authors', 'genres'));
+        $books = Book::with('authors')
+            ->where('user_id', auth()->id())
+            ->isApproved()
+            ->latest()
+            ->paginate();
+        return BookResource::collection($books);
     }
 
     public function store(BookRequest $request)
@@ -57,7 +55,7 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        return view('user.books.show', compact('book'));
+        return $book;
     }
 
     public function update(Request $request, $id)

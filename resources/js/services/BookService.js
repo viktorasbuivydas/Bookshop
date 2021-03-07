@@ -2,7 +2,7 @@ import axios from 'axios';
 
 class BookService{
     index(){
-        return axios.get('link');
+        return axios.get('api/v1/books');
     }
     show(id){
         return axios.get('link', id);

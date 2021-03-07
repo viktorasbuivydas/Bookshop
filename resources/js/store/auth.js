@@ -20,7 +20,7 @@ export default {
     actions: {
         getUserData({ commit }) {
             axios
-                .get(VUE_APP_API_URL + 'me')
+                .get(VUE_APP_API_URL + 'user/me')
                 .then(response => {
                     commit('setUserData', response.data);
                     console.log(response)
@@ -37,9 +37,12 @@ export default {
                 .then(response => {
 
                     if (response.status == 200) {
-                        commit('setUserData', response.data.user);
-                        localStorage.setItem('authToken', response.data.token);
+                        const token = resp.data.token
+                        localStorage.setItem('authToken', token)
+                        axios.defaults.headers.common['Authorization'] = token
+
                     }
+
                 });
 
         },

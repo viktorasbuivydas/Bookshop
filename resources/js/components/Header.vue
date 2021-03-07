@@ -49,15 +49,15 @@
                     <!-- ============================================================== -->
                     <!-- User profile and search -->
                     <!-- ============================================================== -->
-                    <router-link :to="{ name: 'login' }" class="btn btn-primary mx-1"><i class="ti-user m-r-5 m-l-5"></i>
+                    <router-link v-if="!isLoggedIn" :to="{ name: 'login' }" class="btn btn-primary mx-1"><i class="ti-user m-r-5 m-l-5"></i>
                         Login</router-link>
-                    <router-link :to="{ name: 'register' }" class="btn btn-primary mx-1"><i class="ti-plus m-r-5 m-l-5"></i>
+                    <router-link v-if="!isLoggedIn" :to="{ name: 'register' }" class="btn btn-primary mx-1"><i class="ti-plus m-r-5 m-l-5"></i>
                         Register</router-link>
-                    <li>s
+                    <li v-if="isLoggedIn">
                         <router-link :to="{ name: 'user.books.create' }" class="btn btn-primary mx-1">Add Book to Listing</router-link>
                     </li>
 
-                    <li class="nav-item dropdown">
+                    <li v-if="isLoggedIn" class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="assets/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
                         </a>
@@ -82,3 +82,13 @@
     </header>
 
 </template>
+<script>
+export default {
+
+    computed : {
+        isLoggedIn : function(){
+            return this.$store.getters["auth/user"]
+        }
+    },
+}
+</script>

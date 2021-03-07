@@ -2024,6 +2024,15 @@ module.exports = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Header_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/Header.vue */ "./resources/js/components/Header.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
 //
 //
 //
@@ -2036,9 +2045,122 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Header: _components_Header_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  created: function created() {
+    this.getUserData();
+  },
+  computed: {
+    isLoggedIn: function isLoggedIn() {
+      return this.$store.getters["auth/user"];
+    }
+  },
+  methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])("auth", ["getUserData"]))
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Header.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    isLoggedIn: function isLoggedIn() {
+      return this.$store.getters["auth/user"];
+    }
   }
 });
 
@@ -37662,7 +37784,13 @@ var render = function() {
           "data-boxed-layout": "full"
         }
       },
-      [_c("Header"), _vm._v(" "), _c("router-view")],
+      [
+        _c("Header"),
+        _vm._v(" "),
+        _vm.isLoggedIn ? _c("div", [_vm._v("logged in")]) : _vm._e(),
+        _vm._v(" "),
+        _c("router-view")
+      ],
       1
     )
   ])
@@ -37712,111 +37840,120 @@ var render = function() {
                 "ul",
                 { staticClass: "navbar-nav float-end align-items-center" },
                 [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-primary mx-1",
-                      attrs: { to: { name: "login" } }
-                    },
-                    [
-                      _c("i", { staticClass: "ti-user m-r-5 m-l-5" }),
-                      _vm._v("\n                    Login")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "btn btn-primary mx-1",
-                      attrs: { to: { name: "register" } }
-                    },
-                    [
-                      _c("i", { staticClass: "ti-plus m-r-5 m-l-5" }),
-                      _vm._v("\n                    Register")
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "li",
-                    [
-                      _vm._v("s\n                    "),
-                      _c(
+                  !_vm.isLoggedIn
+                    ? _c(
                         "router-link",
                         {
                           staticClass: "btn btn-primary mx-1",
-                          attrs: { to: { name: "user.books.create" } }
+                          attrs: { to: { name: "login" } }
                         },
-                        [_vm._v("Add Book to Listing")]
+                        [
+                          _c("i", { staticClass: "ti-user m-r-5 m-l-5" }),
+                          _vm._v("\n                    Login")
+                        ]
                       )
-                    ],
-                    1
-                  ),
+                    : _vm._e(),
                   _vm._v(" "),
-                  _c("li", { staticClass: "nav-item dropdown" }, [
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      {
-                        staticClass:
-                          "dropdown-menu dropdown-menu-end user-dd animated",
-                        attrs: { "aria-labelledby": "navbarDropdown" }
-                      },
-                      [
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "dropdown-item",
-                            attrs: { to: { name: "home" } }
-                          },
-                          [
-                            _c("i", { staticClass: "ti-home m-r-5 m-l-5" }),
-                            _vm._v("\n                            Dashboard")
-                          ]
-                        ),
+                  !_vm.isLoggedIn
+                    ? _c(
+                        "router-link",
+                        {
+                          staticClass: "btn btn-primary mx-1",
+                          attrs: { to: { name: "register" } }
+                        },
+                        [
+                          _c("i", { staticClass: "ti-plus m-r-5 m-l-5" }),
+                          _vm._v("\n                    Register")
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isLoggedIn
+                    ? _c(
+                        "li",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "btn btn-primary mx-1",
+                              attrs: { to: { name: "user.books.create" } }
+                            },
+                            [_vm._v("Add Book to Listing")]
+                          )
+                        ],
+                        1
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.isLoggedIn
+                    ? _c("li", { staticClass: "nav-item dropdown" }, [
+                        _vm._m(2),
                         _vm._v(" "),
                         _c(
-                          "router-link",
+                          "ul",
                           {
-                            staticClass: "dropdown-item",
-                            attrs: { to: { name: "user.settings.index" } }
+                            staticClass:
+                              "dropdown-menu dropdown-menu-end user-dd animated",
+                            attrs: { "aria-labelledby": "navbarDropdown" }
                           },
                           [
-                            _c("i", { staticClass: "ti-user m-r-5 m-l-5" }),
-                            _vm._v("\n                            Settings")
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "router-link",
-                          {
-                            staticClass: "dropdown-item",
-                            attrs: {
-                              to: { name: "logout" },
-                              onclick:
-                                "event.preventDefault(); document.getElementById('logout-form').submit();"
-                            }
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "ti-power-off m-r-5 m-l-5"
-                            }),
-                            _vm._v("\n                            Log out")
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("form", {
-                          staticStyle: { display: "none" },
-                          attrs: {
-                            id: "logout-form",
-                            action: "logout",
-                            method: "POST"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ])
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { to: { name: "home" } }
+                              },
+                              [
+                                _c("i", { staticClass: "ti-home m-r-5 m-l-5" }),
+                                _vm._v(
+                                  "\n                            Dashboard"
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: { to: { name: "user.settings.index" } }
+                              },
+                              [
+                                _c("i", { staticClass: "ti-user m-r-5 m-l-5" }),
+                                _vm._v("\n                            Settings")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "router-link",
+                              {
+                                staticClass: "dropdown-item",
+                                attrs: {
+                                  to: { name: "logout" },
+                                  onclick:
+                                    "event.preventDefault(); document.getElementById('logout-form').submit();"
+                                }
+                              },
+                              [
+                                _c("i", {
+                                  staticClass: "ti-power-off m-r-5 m-l-5"
+                                }),
+                                _vm._v("\n                            Log out")
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("form", {
+                              staticStyle: { display: "none" },
+                              attrs: {
+                                id: "logout-form",
+                                action: "logout",
+                                method: "POST"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    : _vm._e()
                 ],
                 1
               )
@@ -54681,15 +54818,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Header.vue?vue&type=template&id=1f42fb90& */ "./resources/js/components/Header.vue?vue&type=template&id=1f42fb90&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Header.vue?vue&type=script&lang=js& */ "./resources/js/components/Header.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["render"],
   _Header_vue_vue_type_template_id_1f42fb90___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -54703,6 +54842,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/Header.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/Header.vue?vue&type=script&lang=js&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/Header.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Header.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Header.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Header_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -54741,10 +54894,10 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 var guest = function guest(to, from, next) {
-  if (!localStorage.getItem("authToken")) {
+  if (localStorage.getItem("authToken")) {
     return next();
   } else {
-    return next("/");
+    return next("/login");
   }
 };
 
@@ -54825,7 +54978,7 @@ var VUE_APP_API_URL = '/api/v1/';
   actions: {
     getUserData: function getUserData(_ref) {
       var commit = _ref.commit;
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(VUE_APP_API_URL + 'me').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(VUE_APP_API_URL + 'user/me').then(function (response) {
         commit('setUserData', response.data);
         console.log(response);
       })["catch"](function () {
@@ -54839,8 +54992,9 @@ var VUE_APP_API_URL = '/api/v1/';
       });
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(VUE_APP_API_URL + 'auth/login', data).then(function (response) {
         if (response.status == 200) {
-          commit('setUserData', response.data.user);
-          localStorage.setItem('authToken', response.data.token);
+          var token = resp.data.token;
+          localStorage.setItem('authToken', token);
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.defaults.headers.common['Authorization'] = token;
         }
       });
     },
