@@ -3,21 +3,23 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Api\V1\Controller;
+use App\Http\Resources\Admin\AuthorResource;
+use App\Traits\ApiResponser;
 use Illuminate\Http\Request;
 use App\Models\Author;
 
 class AuthorController extends Controller
 {
+    use ApiResponser;
 
     public function index()
     {
-        $authors = Author::paginate(20);
-        return $authors;
+        return AuthorResource::collection(Author::paginate());
     }
 
-    public function create()
+    public function show(Author $author)
     {
-        return view('admin.authors.create');
+        return new AuthorResource($author);
     }
 
     public function store(Request $request)
@@ -25,31 +27,23 @@ class AuthorController extends Controller
         $request->validate([
             'author' => ['required', 'min:4', 'max:20', 'unique:authors,author']
         ]);
-        Author::create(['author' => $request->author ]);
-        return redirect()->route('admin.authors.create')->with('success', 'Author created successfully');
+        Author::create(['author' => $request->author]);
+        return $this->success('Author created successfully');
     }
 
-    public function edit($id)
+    public function update(Request $request, $author)
     {
-        $author = Author::findOrFail($id);
-        return view('admin.authors.edit', compact('author'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $author = Author::findOrFail($id);
         $request->validate([
             'author' => ['required', 'min:4', 'max:20', 'unique:authors,author']
         ]);
         $author->author = $request->author;
         $author->save();
-        return redirect()->route('admin.authors.create')->with('success', 'Author updated successfully');
+        return $this->success('Author updated successfully');
     }
 
-    public function destroy($id)
+    public function destroy($author)
     {
-        $author = Author::findOrFail($id);
         $author->delete();
-        return redirect()->route('admin.authors.index')->with('success', 'Author was deleted succesfully');
+        return $this->success('Author was deleted succesfully');
     }
 }

@@ -24,7 +24,7 @@ class BookFactory extends Factory
         $users = User::all();
         return [
             'title' => $this->faker->title,
-            'cover_image_url' => 'test',
+            'cover_image_url' => 'cover.jpg',
             'description' => $this->faker->text($maxNbChars = 200),
             'is_approved' => true,
             'user_id' => $users->random()->id,

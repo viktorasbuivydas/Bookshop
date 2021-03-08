@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1\Admin;
 use App\Http\Controllers\Api\V1\Controller;
+use App\Http\Resources\Admin\GenreResource;
 use Illuminate\Http\Request;
 use App\Models\Genre;
 
@@ -10,15 +11,13 @@ class GenreController extends Controller
 
     public function index()
     {
-        $genres = Genre::paginate(20);
-        return view('admin.genres.index', compact('genres'));
+        return GenreResource::collection(Genre::paginate());
     }
 
-    public function create()
+    public function show(Genre $genre)
     {
-        return view('admin.genres.create');
+        return new GenreResource($genre);
     }
-
     public function store(Request $request)
     {
         $request->validate([

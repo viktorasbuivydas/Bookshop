@@ -21,6 +21,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -69,9 +94,60 @@ var render = function() {
     { staticClass: "container justify-content-center" },
     [
       _c(
-        "ul",
+        "div",
+        { staticClass: "row" },
         _vm._l(_vm.books.data, function(book) {
-          return _c("li", { key: book.id }, [_vm._v(" " + _vm._s(book.title))])
+          return _c(
+            "div",
+            {
+              key: book.id,
+              staticClass: "col-lg-3 col-md-4 col-sm-6 col-6 my-2"
+            },
+            [
+              _c("div", { staticClass: "card" }, [
+                _c("a", { attrs: { href: "" } }, [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    attrs: { src: book.cover_image_url, alt: "..." }
+                  })
+                ]),
+                _vm._v(" "),
+                book.is_new
+                  ? _c("span", { staticClass: "btn btn-primary new" }, [
+                      _vm._v(" * NEW *")
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                book.discount > 0
+                  ? _c("div", { staticClass: "discount" }, [
+                      _vm._m(0, true),
+                      _vm._v(" "),
+                      _c("p", [_vm._v(_vm._s(book.discount) + " %")])
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body p-3" }, [
+                  _c("h5", { staticClass: "card-title" }, [
+                    _vm._v("Title: " + _vm._s(book.title))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v("Author: " + _vm._s(book.authors))
+                  ]),
+                  _vm._v(" "),
+                  book.discount > 0
+                    ? _c("p", { staticClass: "card-text text-danger h4" }, [
+                        _c("del", [_vm._v(_vm._s(book.price) + " $")])
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "card-text" }, [
+                    _vm._v("Price: " + _vm._s(book.price_after_discount) + " $")
+                  ])
+                ])
+              ])
+            ]
+          )
         }),
         0
       ),
@@ -84,7 +160,14 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("i", { staticClass: "fa fa-tag fa-lg" })])
+  }
+]
 render._withStripped = true
 
 

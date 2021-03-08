@@ -6,10 +6,14 @@ use App\Http\Controllers\Api\V1\Controller;
 use App\Http\Requests\ReviewRequest;
 use App\Models\BookReview;
 use App\Models\Book;
+use App\Traits\ApiResponser;
 
 class ReviewController extends Controller
 {
-    public function store(ReviewRequest $request){
+    use ApiResponser;
+
+    public function store(ReviewRequest $request)
+    {
         $book = Book::where('is_approved', '!=', null)->where('id', $request->book_id)->firstOrFail();
         BookReview::create(
             [
@@ -19,6 +23,6 @@ class ReviewController extends Controller
                 'user_id' => auth()->id()
             ]
         );
-        return redirect()->route('books.show', $book)->with('success', 'Succesfully wrote a review');
+        return $this->success('Succesfully wrote a review');
     }
 }

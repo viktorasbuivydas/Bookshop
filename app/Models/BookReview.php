@@ -14,6 +14,9 @@ class BookReview extends Model
     protected $fillable = [
         'rating', 'review', 'book_id', 'user_id'
     ];
+
+    protected $perPage = 25;
+
     public function book(){
         return $this->belongsTo(Book::class);
     }

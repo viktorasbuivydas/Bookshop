@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Middleware;
+use App\Traits\ApiResponser;
 use Closure;
-use Illuminate\Auth\Middleware\CheckRole as Middleware;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Auth\Middleware\Authenticate;
 class CheckRole
 {
+    use ApiResponser;
+
     public function handle($request, Closure $next, String $role) {
         if (Auth::user() !== null) {
             $roles = [
@@ -15,11 +16,12 @@ class CheckRole
             ];
             if(in_array(auth()->user()->role_id, $roles[$role]))
             return $next($request);
-        
-            return redirect('/home');
+
+            //unauthorized
+            return $this->error('You are not an admin', 403);
         }
         else{
-            return redirect('/login');
+            return $this->error('You are not logged in', 401);
         }
     }
 }

@@ -12,6 +12,9 @@ class Genre extends Model
     protected $fillable = [
         'genre'
     ];
+
+    protected $perPage = 25;
+
     public $timestamps = false;
 
 }

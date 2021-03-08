@@ -31,6 +31,9 @@ class Book extends Model
     public function reports(){
         return $this->hasMany(Report::class);
     }
+    public function books(){
+        return $this->hasMany(Book::class);
+    }
     public function scopeIsApproved($query){
         return $query->where('is_approved', true);
     }

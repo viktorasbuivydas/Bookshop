@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\User\Book;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ShowBookResource extends JsonResource
+class IndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,14 +14,14 @@ class ShowBookResource extends JsonResource
      */
     public function toArray($request)
     {
+        $url = env('APP_url');
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'description' => $this->description,
-            'cover_image_url' => $this->cover_image_url,
+            'cover_image_url' => $url. '/storage/uploads/images/' .$this->cover_image_url,
             'price' => $this->price,
             'discount' => $this->discount,
-            'authors' => AuthorResource::collection($this->authors)
+            'price_after_discount' => $this->priceAfterDiscount
         ];
     }
 }

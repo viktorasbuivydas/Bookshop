@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Admin\Book;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class BookResource extends JsonResource
+class IndexResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,12 +18,12 @@ class BookResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'description' => $this->when($request->book, $this->description),
-            'cover_image_url' => $url. '/storage/uploads/images' .$this->cover_image_url,
+            'cover_image_url' => $url. '/storage/uploads/images/' .$this->cover_image_url,
             'price' => $this->price,
             'discount' => $this->discount,
-            'authors' => $this->authors->implode('author', ', '),
-            'genres' => $this->genres->implode('genre', ', '),
+            'is_approved' => $this->is_approved,
+            'is_new' => $this->isNew,
+            'price_after_discount' => $this->priceAfterDiscount
         ];
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1\Admin;
 
+use App\Http\Resources\Admin\Book\IndexResource;
 use App\Models\Book;
 use App\Http\Controllers\Api\V1\Controller;
+
 
 
 class BookController extends Controller
@@ -11,18 +13,18 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::with(['authors'])->isApproved()->latest()->simplePaginate(25);
-        return view('admin.books.index', compact('books'));
+        $books = IndexResource::collection(Book::isApproved()->latest()->paginate());
+        return $books;
     }
 
     public function pending(){
         $books = Book::with(['authors'])->isPending()->latest()->simplePaginate(25);
-        return view('admin.books.pending', compact('books'));
+        return $books;
     }
 
     public function show(Book $book)
     {
-        return view('admin.books.show', compact('book'));
+        return $book;
     }
 
     public function approve($id, bool $is_approved)

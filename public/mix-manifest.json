@@ -5,6 +5,6 @@
     "/index.js": "/index.js",
     "/login.js": "/login.js",
     "/register.js": "/register.js",
-    "/vendors~login~register.js": "/vendors~login~register.js",
-    "/vendors~index.js": "/vendors~index.js"
+    "/vendors~index.js": "/vendors~index.js",
+    "/vendors~login~register.js": "/vendors~login~register.js"
 }

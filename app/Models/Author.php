@@ -12,6 +12,8 @@ class Author extends Model
     protected $fillable = [
         'author'
     ];
+    protected $perPage = 25;
+
     public $timestamps = false;
 
 }
