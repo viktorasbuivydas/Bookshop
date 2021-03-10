@@ -43,6 +43,9 @@ class Book extends Model
     public function scopeIsRejected($query){
         return $query->where('is_approved', false);
     }
+    public function scopeUserBook($query){
+        return $query->where('user_id', auth()->id())->isApproved();
+    }
     public function getisNewAttribute(){
         return $this->created_at > now()->subWeek();
     }

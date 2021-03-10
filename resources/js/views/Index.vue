@@ -17,7 +17,6 @@
                     <div class="card-body p-3">
 
                         <h5 class="card-title">Title: {{ book.title }}</h5>
-                        <p class="card-text">Author: {{ book.authors }}</p>
                         <p v-if="book.discount>0" class="card-text text-danger h4">
                             <del>{{ book.price }} $</del>
                         </p>

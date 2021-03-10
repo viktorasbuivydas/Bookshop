@@ -3,40 +3,40 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Resources\Admin\Book\IndexResource;
+use App\Http\Resources\Admin\Book\ShowResource;
 use App\Models\Book;
 use App\Http\Controllers\Api\V1\Controller;
-
+use App\Traits\ApiResponser;
 
 
 class BookController extends Controller
 {
+    use ApiResponser;
 
     public function index()
     {
-        $books = IndexResource::collection(Book::isApproved()->latest()->paginate());
-        return $books;
+        return IndexResource::collection(Book::isApproved()->latest()->paginate());
     }
 
     public function pending(){
-        $books = Book::with(['authors'])->isPending()->latest()->simplePaginate(25);
-        return $books;
+        return Book::with(['authors'])->isPending()->latest()->paginate();
     }
 
     public function show(Book $book)
     {
-        return $book;
+        return new ShowResource($book);
     }
 
-    public function approve($id, bool $is_approved)
+    public function approve(Book $book, bool $is_approved)
     {
-        $book = Book::find($id);
+
         if($book->is_approved != null){
-            return redirect()->route('admin.books.index')->with('error', 'This book status is already changed');
+            return $this->error('This book status is already changed', 400);
         }
         else{
             $book->is_approved = $is_approved;
             $book->save();
-            return redirect()->route('admin.books.index')->with('success', 'Book status changed successfully');
+            return $this->success('Book status changed successfully');
         }
 
     }

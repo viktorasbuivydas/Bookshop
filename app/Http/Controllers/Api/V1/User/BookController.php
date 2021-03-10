@@ -22,9 +22,7 @@ class BookController extends Controller
 
     public function index()
     {
-        $books = Book::with('authors')
-            ->where('user_id', auth()->id())
-            ->isApproved()
+        $books = Book::userBook()
             ->latest()
             ->paginate();
         return IndexResource::collection($books);
@@ -41,14 +39,7 @@ class BookController extends Controller
 
         if ($author_id == null || $genre_id == null)
             return $this->error('Please provide at least one book author and genre', 400);
-        $book_model = auth()->user()->books()->create(
-            [
-                'title' => $request->title,
-                'cover_image_url' => $request->cover_image_url,
-                'description' => $request->description,
-                'price' => $request->price,
-                'discount' => $request->discount,
-            ]);
+        $book_model = auth()->user()->books()->create($request->validated());
         $book = new Book();
         $book->authors()->attach($author_id, ['book_id' => $book_model->id]);
         $book->genres()->attach($genre_id, ['book_id' => $book_model->id]);
@@ -58,40 +49,31 @@ class BookController extends Controller
 
     public function show(Book $book)
     {
-        return $book->user_id == auth()->id() && $book->is_approved
+        return $book->userBook()
             ? new ShowResource($book)
             : abort(404);
     }
 
-    public function update(Request $request, Book $book)
+    public function update(BookRequest $request, Book $book)
     {
-        $request->validate([
-            'title' => ['required', 'max:100'],
-            'description' => ['required', 'max:5000'],
-            'price' => ['required', 'numeric', 'min:0'],
-            'discount' => ['required', 'numeric', 'min:0', 'max:100'],
-        ]);
-        if ($book->id != Auth::id() || !User::isAdmin()) {
-            abort(404);
-        }
-        $book->title = $request->title;
-        $book->description = $request->description;
-        $book->price = $request->price;
-        $book->discount = $request->discount;
-        $book->save();
+
+        abort_if($book->userBook() || !User::isAdmin(), 404);
+
+        $book->save($request->validated());
         return $this->success('Book updated succesfully');
 
     }
 
     public function destroy(Book $book)
     {
-        if ($book->user_id !== auth()->id() || !User::isAdmin())
-            abort(404);
+        abort_if($book->userBook() || !User::isAdmin(), 404);
 
         $book->authors()->detach();
         $book->genres()->detach();
+
         $book->reviews()->delete();
         $book->reports()->delete();
+
         $book->delete();
         return $this->success('Succesfully deleted this book');
     }

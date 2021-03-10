@@ -80,7 +80,8 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Aside_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/Aside.vue */ "./resources/js/components/Aside.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _services_User_Home_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/User/Home.js */ "./resources/js/services/User/Home.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -145,23 +146,36 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Aside: _components_Aside_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   data: function data() {
     return {
-      isLoggedIn: false
+      isLoggedIn: false,
+      homeData: []
     };
   },
   created: function created() {// this.loadUser()
   },
-  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapActions"])('auth', ['getUserData'])), {}, {
+  mounted: function mounted() {
+    this.loadHomeData();
+  },
+  methods: _objectSpread(_objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_2__["mapActions"])('auth', ['getUserData'])), {}, {
     loadUser: function loadUser() {
       var _this = this;
 
       this.getUserData().then(function () {
         _this.isLoggedIn = true;
+      });
+    },
+    loadHomeData: function loadHomeData() {
+      var _this2 = this;
+
+      _services_User_Home_js__WEBPACK_IMPORTED_MODULE_1__["default"].index().then(function (response) {
+        _this2.homeData = response.data;
+        console.log(response.data);
       });
     }
   })
@@ -437,59 +451,69 @@ var render = function() {
     [
       _c("Aside"),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "container-fluid" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-4" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card text-white text-center bg-success mb-4"
-                  },
-                  [
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("h4", { staticClass: "card-title" }, [
-                        _vm._v("Approved books "),
-                        _c("b", [_vm._v(_vm._s(_vm.approved_book_count))])
+      _c("div", { staticClass: "container" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "container-fluid" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card text-white text-center bg-success mb-4"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h4", { staticClass: "card-title" }, [
+                          _vm._v("Approved books "),
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.homeData.approved_book_count))
+                          ])
+                        ])
                       ])
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "card text-white text-center bg-warning mb-4"
-                  },
-                  [
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("h4", { staticClass: "card-title" }, [
-                        _vm._v("Pending books "),
-                        _c("b", [_vm._v(_vm._s(_vm.pending_book_count))])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card text-white text-center bg-warning mb-4"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h4", { staticClass: "card-title" }, [
+                          _vm._v("Pending books "),
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.homeData.pending_book_count))
+                          ])
+                        ])
                       ])
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4" }, [
-                _c(
-                  "div",
-                  { staticClass: "card text-white text-center bg-danger mb-4" },
-                  [
-                    _c("div", { staticClass: "card-body" }, [
-                      _c("h4", { staticClass: "card-title" }, [
-                        _vm._v("Rejected books "),
-                        _c("b", [_vm._v(_vm._s(_vm.rejected_book_count))])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-sm-4" }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "card text-white text-center bg-danger mb-4"
+                    },
+                    [
+                      _c("div", { staticClass: "card-body" }, [
+                        _c("h4", { staticClass: "card-title" }, [
+                          _vm._v("Rejected books "),
+                          _c("b", [
+                            _vm._v(_vm._s(_vm.homeData.rejected_book_count))
+                          ])
+                        ])
                       ])
-                    ])
-                  ]
-                )
+                    ]
+                  )
+                ])
               ])
             ])
           ])
@@ -607,6 +631,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aside_vue_vue_type_template_id_0d35e1dd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/services/User/Home.js":
+/*!********************************************!*\
+  !*** ./resources/js/services/User/Home.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Home = /*#__PURE__*/function () {
+  function Home() {
+    _classCallCheck(this, Home);
+  }
+
+  _createClass(Home, [{
+    key: "index",
+    value: function index() {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/v1/user/home');
+    }
+  }]);
+
+  return Home;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new Home());
 
 /***/ }),
 

@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + ({"home":"home","vendors~index":"vendors~index","index":"index","vendors~login~register":"vendors~login~register","login":"login","register":"register"}[chunkId]||chunkId) + ".js"
+/******/ 		return __webpack_require__.p + "" + ({"admin authors create":"admin authors create","admin authors edit":"admin authors edit","admin authors index":"admin authors index","admin books index":"admin books index","admin books pending":"admin books pending","admin books show":"admin books show","admin genres create":"admin genres create","admin genres edit":"admin genres edit","admin genres index":"admin genres index","admin reports index":"admin reports index","books show":"books show","home":"home","vendors~index":"vendors~index","index":"index","vendors~login~register":"vendors~login~register","login":"login","register":"register"}[chunkId]||chunkId) + ".js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -54930,6 +54930,90 @@ var routes = [{
   beforeEnter: auth,
   component: function component() {
     return __webpack_require__.e(/*! import() | home */ "home").then(__webpack_require__.bind(null, /*! ../views/Home/Index.vue */ "./resources/js/views/Home/Index.vue"));
+  }
+}, // books
+{
+  path: '/books/{id}',
+  name: 'books.show',
+  component: function component() {
+    return __webpack_require__.e(/*! import() | books show */ "books show").then(__webpack_require__.bind(null, /*! ../views/Books/Show.vue */ "./resources/js/views/Books/Show.vue"));
+  }
+}, //admin
+//authors
+{
+  path: '/admin/authors/create',
+  name: 'admin.authors.create',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin authors create */ "admin authors create").then(__webpack_require__.bind(null, /*! ../views/Admin/Authors/Create.vue */ "./resources/js/views/Admin/Authors/Create.vue"));
+  }
+}, {
+  path: '/admin/authors/edit/{id}',
+  name: 'admin.authors.edit',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin authors edit */ "admin authors edit").then(__webpack_require__.bind(null, /*! ../views/Admin/Authors/Edit.vue */ "./resources/js/views/Admin/Authors/Edit.vue"));
+  }
+}, {
+  path: '/admin/authors/',
+  name: 'admin.authors.index',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin authors index */ "admin authors index").then(__webpack_require__.bind(null, /*! ../views/Admin/Authors/Index.vue */ "./resources/js/views/Admin/Authors/Index.vue"));
+  }
+}, //admin books
+{
+  path: '/admin/books/',
+  name: 'admin.books.index',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin books index */ "admin books index").then(__webpack_require__.bind(null, /*! ../views/Admin/Books/Index.vue */ "./resources/js/views/Admin/Books/Index.vue"));
+  }
+}, //admin books pending
+{
+  path: '/admin/books/pending',
+  name: 'admin.books.pending',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin books pending */ "admin books pending").then(__webpack_require__.bind(null, /*! ../views/Admin/Books/Pending.vue */ "./resources/js/views/Admin/Books/Pending.vue"));
+  }
+}, //admin books show
+{
+  path: '/admin/books/{id}',
+  name: 'admin.books.show',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin books show */ "admin books show").then(__webpack_require__.bind(null, /*! ../views/Admin/Books/Show.vue */ "./resources/js/views/Admin/Books/Show.vue"));
+  }
+}, //genres
+{
+  path: '/admin/genres/create',
+  name: 'admin.genres.create',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin genres create */ "admin genres create").then(__webpack_require__.bind(null, /*! ../views/Admin/Genres/Create.vue */ "./resources/js/views/Admin/Genres/Create.vue"));
+  }
+}, {
+  path: '/admin/genres/edit/{id}',
+  name: 'admin.genres.edit',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin genres edit */ "admin genres edit").then(__webpack_require__.bind(null, /*! ../views/Admin/Genres/Edit.vue */ "./resources/js/views/Admin/Genres/Edit.vue"));
+  }
+}, {
+  path: '/admin/genres/',
+  name: 'admin.genres.index',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin genres index */ "admin genres index").then(__webpack_require__.bind(null, /*! ../views/Admin/Genres/Index.vue */ "./resources/js/views/Admin/Genres/Index.vue"));
+  }
+}, //reports
+{
+  path: '/admin/reports/',
+  name: 'admin.reports.index',
+  beforeEnter: auth,
+  component: function component() {
+    return __webpack_require__.e(/*! import() | admin reports index */ "admin reports index").then(__webpack_require__.bind(null, /*! ../views/Admin/Reports/Index.vue */ "./resources/js/views/Admin/Reports/Index.vue"));
   }
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({

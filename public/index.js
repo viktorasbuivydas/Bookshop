@@ -45,7 +45,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -129,10 +128,6 @@ var render = function() {
                 _c("div", { staticClass: "card-body p-3" }, [
                   _c("h5", { staticClass: "card-title" }, [
                     _vm._v("Title: " + _vm._s(book.title))
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "card-text" }, [
-                    _vm._v("Author: " + _vm._s(book.authors))
                   ]),
                   _vm._v(" "),
                   book.discount > 0

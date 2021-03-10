@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Traits\ApiResponser;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -12,41 +14,32 @@ class AuthController extends Controller
 {
     use ApiResponser;
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $attr = $request->validate([
-            'name' => ['required', 'string', 'max:25'],
-            'email' => ['required', 'string', 'email', 'max:50', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'date_of_birth' => ['required', 'date', 'before:today', 'before:-15 years', 'after:1900-01-01'],
-
-        ]);
 
         $user = User::create([
-            'name' => $attr['name'],
-            'email' => $attr['email'],
-            'password' => Hash::make($attr['password']),
-            'date_of_birth' => $attr['date_of_birth']
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'date_of_birth' => $request->date_of_birth
         ]);
 
         return $this->success([
             'token' => $user->createToken('API Token')->plainTextToken
+                . '2'
         ]);
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $attr = $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string|min:6'
-        ]);
 
-        if (!Auth::attempt($attr)) {
+        if (!Auth::attempt($request->all())) {
             return $this->error('Credentials not match', 401);
         }
 
         return $this->success([
             'token' => auth()->user()->createToken('API Token')->plainTextToken
+                . auth()->user()->role_id
         ]);
     }
 

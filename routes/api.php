@@ -17,7 +17,7 @@ Route::group(['namespace' => 'Api\\V1', 'as' => 'api.', 'prefix' => 'v1'], funct
         Route::apiResource('reviews', ReviewController::class, ['only' => ['store']]);
 
         Route::get('home', [App\Http\Controllers\Api\V1\HomeController::class, 'index']);
-        Route::post('reports/{book}', [App\Http\Controllers\Api\V1\User\ReportController::class, 'store']);
+        Route::post('reports', [App\Http\Controllers\Api\V1\User\ReportController::class, 'store']);
         Route::post('logout', [App\Http\Controllers\Api\V1\AuthController::class, 'logout']);
     });
     // Api/v1/admin/

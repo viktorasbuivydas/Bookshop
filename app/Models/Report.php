@@ -18,4 +18,7 @@ class Report extends Model
     public function user(){
         return $this->hasOne(User::class);
     }
+    public function scopeUserReport($query, $book_id){
+        return $query->where('book_id', $book_id)->where('user_id', auth()->id());
+    }
 }

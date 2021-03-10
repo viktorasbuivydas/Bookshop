@@ -13,10 +13,10 @@ class SettingController extends Controller
 
     public function store(SettingRequest $request)
     {
-        if(!empty($request->email)){
+        if (!empty($request->email)) {
             auth()->user()->email = $request->email;
         }
-        if(!empty($request->new_password)){
+        if (!empty($request->new_password)) {
             auth()->user()->password = Hash::make($request->new_password);
         }
         auth()->user()->update();

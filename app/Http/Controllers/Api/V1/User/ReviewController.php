@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api\V1\User;
 use App\Http\Controllers\Api\V1\Controller;
 use App\Http\Requests\ReviewRequest;
 use App\Models\BookReview;
-use App\Models\Book;
 use App\Traits\ApiResponser;
 
 class ReviewController extends Controller
@@ -14,15 +13,11 @@ class ReviewController extends Controller
 
     public function store(ReviewRequest $request)
     {
-        $book = Book::where('is_approved', '!=', null)->where('id', $request->book_id)->firstOrFail();
-        BookReview::create(
-            [
-                'rating' => $request->rating,
-                'review' => $request->review,
-                'book_id' => $request->book_id,
-                'user_id' => auth()->id()
-            ]
-        );
+        if (BookReview::userReview($request->book_id)->exists()) {
+            return $this->error('You already wrote a review to this book', 400);
+        }
+        BookReview::create($request->validated());
         return $this->success('Succesfully wrote a review');
+
     }
 }

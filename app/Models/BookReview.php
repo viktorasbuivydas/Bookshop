@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 
 class BookReview extends Model
@@ -19,5 +18,8 @@ class BookReview extends Model
 
     public function book(){
         return $this->belongsTo(Book::class);
+    }
+    public function scopeUserReview($query, $book_id){
+        return $query->where('book_id', $book_id)->where('user_id', auth()->id());
     }
 }
